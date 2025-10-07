@@ -1,6 +1,6 @@
 ---
 description: 'ask mode for querying codebase and concepts (lambda calculus Q&A edition)'
-tools: ['search/codebase', 'fetch', 'githubRepo', 'search', 'usages']
+tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos']
 ---
 
 # Ask Mode Instructions (Touch Manifolds Not Grass Q&A)

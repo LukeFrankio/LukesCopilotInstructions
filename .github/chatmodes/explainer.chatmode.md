@@ -1,6 +1,6 @@
 ---
 description: 'explain complex concepts using lambda calculus and gen-z energy uwu'
-tools: ['search/codebase', 'fetch', 'githubRepo', 'search', 'usages']
+tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos']
 ---
 
 # Explainer Mode Instructions

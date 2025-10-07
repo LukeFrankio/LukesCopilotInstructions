@@ -1,6 +1,6 @@
 ---
 description: 'edit mode for AI-powered multi-file editing sessions (functional refactoring edition)'
-tools: ['changes', 'search/codebase', 'edit/editFiles', 'problems', 'runCommands', 'search', 'usages']
+tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos']
 ---
 
 # Edit Mode Instructions (refactor ALL the things uwu)

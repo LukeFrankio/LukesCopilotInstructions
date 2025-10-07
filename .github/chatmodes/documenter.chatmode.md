@@ -1,6 +1,6 @@
 ---
 description: 'generate excessive Doxygen documentation with gen-z energy uwu'
-tools: ['search/codebase', 'edit/editFiles', 'search', 'usages']
+tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos']
 ---
 
 # Documenter Mode Instructions

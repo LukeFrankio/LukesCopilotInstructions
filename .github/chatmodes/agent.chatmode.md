@@ -1,6 +1,6 @@
 ---
 description: 'agent mode for autonomous code editing with tool invocations (agentic functional programming)'
-tools: ['changes', 'search/codebase', 'edit/editFiles', 'problems', 'runCommands', 'search', 'usages', 'fetch', 'githubRepo', 'extensions', 'new']
+tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos']
 ---
 
 # Agent Mode Instructions (Autonomous Lambda Calculus Edition)

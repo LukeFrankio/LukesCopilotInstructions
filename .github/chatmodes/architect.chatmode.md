@@ -1,6 +1,6 @@
 ---
 description: 'architecture mode for designing systems that make objects cry uwu'
-tools: ['search/codebase', 'fetch', 'githubRepo', 'search', 'usages']
+tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos']
 ---
 
 # Architect Mode Instructions (functional programming gang rise up)
