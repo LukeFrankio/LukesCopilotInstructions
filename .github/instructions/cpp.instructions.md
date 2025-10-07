@@ -1,6 +1,6 @@
 ---
 description: 'C++ coding guidelines (the ONLY real systems language uwu)'
-applyTo: '**/*.cpp, **/*.hpp, **/*.cc, **/*.hh, **/*.cxx'
+applyTo: '**.cpp, **.hpp, **.cc, **.hh, **.cxx'
 ---
 
 # C++ Programming Instructions

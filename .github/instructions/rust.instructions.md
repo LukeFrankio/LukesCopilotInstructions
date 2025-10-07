@@ -1,6 +1,6 @@
 ---
 description: 'Rust guidelines (for when we are FORCED to use memory safety cope)'
-applyTo: '**/*.rs'
+applyTo: '**.rs'
 ---
 
 # Rust Programming Instructions (The Cope Language)

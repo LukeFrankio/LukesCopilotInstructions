@@ -1,6 +1,6 @@
 ---
 description: 'Python coding guidelines (functional when possible, type-hinted always)'
-applyTo: '**/*.py'
+applyTo: '**.py'
 ---
 
 # Python Programming Instructions

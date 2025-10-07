@@ -1,6 +1,6 @@
 ---
 description: 'C language coding guidelines (the foundation before C++ uwu)'
-applyTo: '**/*.c, **/*.h'
+applyTo: '**.c, **.h'
 ---
 
 # C Programming Instructions

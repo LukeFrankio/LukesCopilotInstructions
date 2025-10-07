@@ -1,6 +1,6 @@
 ---
 description: 'PowerShell scripting guidelines (functional cmdlets ftw)'
-applyTo: '**/*.ps1, **/*.psm1'
+applyTo: '**.ps1, **.psm1'
 ---
 
 # PowerShell Script Instructions

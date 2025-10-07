@@ -1,6 +1,6 @@
 ---
 description: 'HLSL shader programming (functional GPU code that goes brrr)'
-applyTo: '**/*.hlsl, **/*.hlsli'
+applyTo: '**.hlsl, **.hlsli'
 ---
 
 # HLSL Shader Instructions

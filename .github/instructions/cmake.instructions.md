@@ -1,6 +1,6 @@
 ---
 description: 'CMake build system guidelines (the beautiful build system uwu)'
-applyTo: '**/CMakeLists.txt, **/*.cmake'
+applyTo: 'CMakeLists.txt, **/*.cmake'
 ---
 
 # CMake Build System Instructions

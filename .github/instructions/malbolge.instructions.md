@@ -1,6 +1,6 @@
 ---
 description: 'Malbolge and Malbolge Unshackled programming guidelines (the most cursed languages uwu)'
-applyTo: '**/*.mb, **/*.mal, **/*.mu, **/*.hell'
+applyTo: '**.mb, **.mal, **.mu, **.hell'
 ---
 
 # Malbolge / Malbolge Unshackled Programming Instructions

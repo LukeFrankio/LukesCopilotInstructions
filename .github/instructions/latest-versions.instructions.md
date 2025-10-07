@@ -1,6 +1,6 @@
 ---
 description: 'ALWAYS prefer latest versions (including beta) across ALL languages and tools'
-applyTo: '**/*'
+applyTo: '**'
 ---
 
 # Latest Version Preference (ALWAYS ACTIVE)

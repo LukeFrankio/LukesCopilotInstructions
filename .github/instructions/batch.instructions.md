@@ -1,6 +1,6 @@
 ---
 description: 'Windows Batch scripting guidelines (functional where possible in a cursed language)'
-applyTo: '**/*.bat, **/*.cmd'
+applyTo: '**.bat, **.cmd'
 ---
 
 # Batch Script Instructions

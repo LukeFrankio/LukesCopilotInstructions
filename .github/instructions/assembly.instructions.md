@@ -1,6 +1,6 @@
 ---
 description: 'Assembly language guidelines (touching the hardware directly uwu)'
-applyTo: '**/*.asm, **/*.s, **/*.S'
+applyTo: '**.asm, **s, **.S'
 ---
 
 # Assembly Language Instructions

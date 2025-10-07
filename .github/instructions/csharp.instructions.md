@@ -1,6 +1,6 @@
 ---
 description: 'C# coding guidelines (Microsoft language that is actually decent)'
-applyTo: '**/*.cs'
+applyTo: '**.cs'
 ---
 
 # C# Programming Instructions

@@ -1,6 +1,6 @@
 ---
 description: 'Slang shader programming (the future of GPU code uwu)'
-applyTo: '**/*.slang'
+applyTo: '**.slang'
 ---
 
 # Slang Shading Language Instructions

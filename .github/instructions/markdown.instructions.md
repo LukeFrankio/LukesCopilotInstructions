@@ -1,6 +1,6 @@
 ---
 description: 'markdown content creation with ZERO tolerance for warnings'
-applyTo: '**/*.md'
+applyTo: '**.md'
 ---
 
 # Markdown Instructions (immaculate documentation edition)
