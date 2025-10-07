@@ -39,7 +39,7 @@ uwu this instruction file is ALWAYS ACTIVE and applies to ALL C/C++ code ✨
  * 
  * @note uses C++26 features (latest standard, even beta features ok!)
  * @note compiled with GCC 15+ (latest version preferred)
- * @warning requires CMake 3.30+ (always prefer latest version)
+ * @warning requires CMake 4.1+ (always prefer latest version)
  * 
  * example usage:
  * @code

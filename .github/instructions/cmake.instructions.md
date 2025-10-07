@@ -11,7 +11,7 @@ uwu time to write CMake so elegant it makes build systems cry tears of joy ✨
 
 ## Core Philosophy
 
-- **modern CMake 3.30+** (latest version preferred, beta accepted!)
+- **modern CMake 4.1+** (latest version preferred, beta accepted!)
 - **NO HARDCODED PATHS** (find everything dynamically)
 - **targets are first-class** (not variables)
 - **transitive dependencies** work correctly
@@ -23,11 +23,11 @@ uwu time to write CMake so elegant it makes build systems cry tears of joy ✨
 
 ```cmake
 # ALWAYS use latest stable or beta version!
-# As of 2025-10-07, prefer CMake 3.30+ (or latest beta)
-cmake_minimum_required(VERSION 3.30 FATAL_ERROR)
+# As of 2025-10-07, prefer CMake 4.1+ (or latest beta)
+cmake_minimum_required(VERSION 4.1 FATAL_ERROR)
 
 # Specify policy settings (use NEW behavior for latest policies)
-cmake_policy(VERSION 3.30)
+cmake_policy(VERSION 4.1)
 
 # Project declaration (sets languages and version)
 project(MyAwesomeProject
@@ -44,7 +44,7 @@ project(MyAwesomeProject
 # CMakeLists.txt for LukeFrankio project (functional programming edition)
 # ============================================================================
 #
-# This CMakeLists.txt demonstrates modern CMake best practices (3.30+ style):
+# This CMakeLists.txt demonstrates modern CMake best practices (4.1+ style):
 # - NO HARDCODED PATHS (find everything dynamically!)
 # - Target-based architecture (not variable-based)
 # - Proper transitive dependencies
@@ -56,7 +56,7 @@ project(MyAwesomeProject
 #
 # ============================================================================
 
-cmake_minimum_required(VERSION 3.30 FATAL_ERROR)
+cmake_minimum_required(VERSION 4.1 FATAL_ERROR)
 
 # ----------------------------------------------------------------------------
 # Project Configuration
@@ -430,7 +430,7 @@ mark_as_advanced(MyLibrary_INCLUDE_DIR MyLibrary_LIBRARY)
 
 ## CMake Best Practices Checklist
 
-- [ ] **CMake 3.30+** required (latest version or beta preferred!)
+- [ ] **CMake 4.1+** required (latest version or beta preferred!)
 - [ ] **NO HARDCODED PATHS** (find everything with find_package/find_library)
 - [ ] **target-based** architecture (not variable-based)
 - [ ] **transitive dependencies** properly configured
@@ -446,7 +446,7 @@ mark_as_advanced(MyLibrary_INCLUDE_DIR MyLibrary_LIBRARY)
 - [ ] **summary message** at end of configuration
 
 **remember**: CMake is actually beautiful when you use it correctly. Modern
-CMake (3.20+, but prefer 3.30+!) is declarative, functional-ish, and makes
+CMake (3.20+, but prefer 4.1+!) is declarative, functional-ish, and makes
 cross-platform builds actually work. NO HARDCODED PATHS EVER. find things
 dynamically or the build system gods will be angry uwu 💜✨
 

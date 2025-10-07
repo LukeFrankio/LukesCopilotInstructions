@@ -118,18 +118,18 @@ endif()
 ## Build Tools (LATEST ALWAYS)
 
 ### CMake (The Beautiful Build System):
-- **Prefer: CMake 3.30+** (latest stable or RC)
+- **Prefer: CMake 4.1+** (latest stable or RC)
 - Minimum: CMake 3.25
 - Never: CMake 3.20 or earlier
 
 ```cmake
-cmake_minimum_required(VERSION 3.30 FATAL_ERROR)
+cmake_minimum_required(VERSION 4.1 FATAL_ERROR)
 
 # check for latest version
-if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.30)
+if(CMAKE_VERSION VERSION_GREATER_EQUAL 4.1)
     message(STATUS "CMake ${CMAKE_VERSION} (the beautiful build system uwu)")
 else()
-    message(WARNING "CMake ${CMAKE_VERSION} is old, prefer 3.30+")
+    message(WARNING "CMake ${CMAKE_VERSION} is old, prefer 4.1+")
 endif()
 ```
 
@@ -330,7 +330,7 @@ When documenting version requirements:
  * @note Requires C++26 (latest standard, beta features ok!)
  * @note Compiled with GCC 15+ (compiler supremacy)
  * @note Uses Vulkan 1.3.290+ (latest SDK)
- * @note Tested with CMake 3.30+ (the beautiful build system)
+ * @note Tested with CMake 4.10+ (the beautiful build system)
  * @note Doxygen 1.12+ for documentation
  * @note Google Test 1.15+ for testing
  * 
