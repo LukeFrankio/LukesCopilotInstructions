@@ -226,12 +226,10 @@ seize the means of compilation! 🚀
 
 ## License
 
-[Add your license here]
+[GPL]
 
 ## Author
 
 LukeFrankio
 
 ---
-
-*"touch ternary not grass uwu"* - found in the Malbolge instructions
