@@ -204,16 +204,16 @@ minversion = "8.3"
 ## Documentation Tools (LATEST ALWAYS)
 
 ### Doxygen (Documentation Supremacy):
-- **Prefer: Doxygen 1.12+** (latest stable or git master)
+- **Prefer: Doxygen 1.15+** (latest stable or git master)
 - Minimum: Doxygen 1.10
 - Never: Doxygen 1.8 or earlier
 
 ```cmake
-find_package(Doxygen 1.12 QUIET COMPONENTS dot)
+find_package(Doxygen 1.15 QUIET COMPONENTS dot)
 
 if(DOXYGEN_FOUND)
     message(STATUS "Doxygen ${DOXYGEN_VERSION} (excessive documentation incoming)")
-    if(DOXYGEN_VERSION VERSION_GREATER_EQUAL 1.12)
+    if(DOXYGEN_VERSION VERSION_GREATER_EQUAL 1.15)
         set(DOXYGEN_USE_MATHJAX YES)  # latest features!
     endif()
 endif()
@@ -331,7 +331,7 @@ When documenting version requirements:
  * @note Compiled with GCC 15+ (compiler supremacy)
  * @note Uses Vulkan 1.3.290+ (latest SDK)
  * @note Tested with CMake 4.10+ (the beautiful build system)
- * @note Doxygen 1.12+ for documentation
+ * @note Doxygen 1.15+ for documentation
  * @note Google Test 1.15+ for testing
  * 
  * @warning Older versions may work but are not supported

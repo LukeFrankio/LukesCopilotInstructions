@@ -17,7 +17,7 @@ uwu this instruction file is ALWAYS ACTIVE and applies to ALL C/C++ code ✨
 - **explain WHY not just WHAT** (implementation rationale)
 - **mark function purity** explicitly (pure/impure status)
 - **examples REQUIRED** for non-trivial functions
-- **latest Doxygen version** (1.12+ preferred, beta accepted!)
+- **latest Doxygen version** (1.15+ preferred, beta accepted!)
 
 ## File Header (MANDATORY)
 
@@ -37,13 +37,7 @@ uwu this instruction file is ALWAYS ACTIVE and applies to ALL C/C++ code ✨
  * @date 2025-10-07
  * @version 1.0
  * 
- * @note uses C++26 features (latest standard, even beta features ok!)
- * @note compiled with GCC 15+ (latest version preferred)
- * @warning requires CMake 4.1+ (always prefer latest version)
- * 
- * example usage:
- * @code
- * // show how to use stuff from this file
+ - **latest Doxygen version** (1.15+ preferred, beta accepted!)
  * auto result = do_thing(params);
  * // result goes brrr ✨
  * @endcode
@@ -76,11 +70,11 @@ uwu this instruction file is ALWAYS ACTIVE and applies to ALL C/C++ code ✨
  * @param[in,out] modified [describe in-out parameter behavior]
  * 
  * @return [describe return value, explain meaning and possible values]
- * @retval nullptr [specific return value condition explained]
+ - [ ] **latest Doxygen** version used (1.15+ or beta)
  * @retval true [when does it return true and what does that mean]
  * 
  * @pre [precondition - what must be true before calling]
- * @pre [another precondition if multiple]
+ **latest Doxygen** version used (1.15+ or beta)
  * @post [postcondition - what will be true after calling]
  * @post [another postcondition]
  * @invariant [what stays constant throughout execution]
@@ -594,7 +588,7 @@ endif()
 - [ ] **notes and warnings** included (@note, @warning)
 - [ ] **gen-z slang** used for personality
 - [ ] **technical accuracy** maintained
-- [ ] **latest Doxygen** version used (1.12+ or beta)
+ - [ ] **latest Doxygen** version used (1.15+ or beta)
 
 **remember**: excessive documentation is self-care. future you (or your
 collaborators) will thank present you for these detailed comments. functional
