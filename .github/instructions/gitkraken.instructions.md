@@ -1,3 +1,4 @@
+---
 description: 'GitKraken and Git operations guidelines (CI safety first!)'
 applyTo: '**'
 ---

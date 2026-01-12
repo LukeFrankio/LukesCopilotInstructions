@@ -1,3 +1,4 @@
+---
 description: 'Seamless Agent interaction guidelines (controlling the user interface)'
 applyTo: '**'
 ---
