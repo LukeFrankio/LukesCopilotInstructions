@@ -33,7 +33,7 @@ Activate this skill when:
 ### Two Takum Variants
 
 | Variant                     | Types                 | Significand Domain | Best For                         |
-| --------------------------- | --------------------- | ------------------ | ---------------------------------|
+| --------------------------- | --------------------- | ------------------ | -------------------------------- |
 | **Logarithmic** (standard)  | `takum_log8/16/32/64` | Logarithmic        | Multiplication, division, powers |
 | **Linear**                  | `takum8/16/32/64`     | Linear             | Addition, subtraction            |
 
@@ -64,11 +64,11 @@ This range is **identical** for takum16, takum32, and takum64.
 
 ### Special Values
 
-| Value              | Representation                       |
-| ------------------ | ------------------------------------ |
-| **Zero**           | All bits 0: `0b00000000…`            |
-| **NaR** (Not a Real) | Sign=1, rest zeros: `0b10000000…`  |
-| **One**            | Type-specific positive encoding      |
+| Value                | Representation                       |
+| -------------------- | ------------------------------------ |
+| **Zero**             | All bits 0: `0b00000000…`            |
+| **NaR** (Not a Real) | Sign=1, rest zeros: `0b10000000…`    |
+| **One**              | Type-specific positive encoding      |
 
 ## Quick Reference
 

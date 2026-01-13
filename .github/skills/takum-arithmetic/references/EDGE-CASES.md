@@ -17,19 +17,19 @@ TAKUM_LOG64_NAR = -9223372036854775808 = 0x8000000000000000
 
 **When NaR is Produced**:
 
-| Operation | Condition | Result |
-|-----------|-----------|--------|
-| Division | x / 0 | NaR |
-| Division | 0 / 0 | NaR |
-| Division | NaR / anything | NaR |
-| Power | 0^0 | NaR |
-| Square Root | √(negative) | NaR |
-| N-th Root | root(negative, even n) | NaR |
-| N-th Root | root(x, 0) | NaR |
-| Inversion | 1/0 | NaR |
-| Inversion | 1/NaR | NaR |
-| Any | operation(NaR, ...) | NaR |
-| Conversion | from NaN | NaR |
+| Operation   | Condition              | Result |
+|-------------|------------------------|--------|
+| Division    | x / 0                  | NaR    |
+| Division    | 0 / 0                  | NaR    |
+| Division    | NaR / anything         | NaR    |
+| Power       | 0^0                    | NaR    |
+| Square Root | √(negative)            | NaR    |
+| N-th Root   | root(negative, even n) | NaR    |
+| N-th Root   | root(x, 0)             | NaR    |
+| Inversion   | 1/0                    | NaR    |
+| Inversion   | 1/NaR                  | NaR    |
+| Any         | operation(NaR, ...)    | NaR    |
+| Conversion  | from NaN               | NaR    |
 
 ### Zero
 
@@ -46,13 +46,13 @@ TAKUM_LOG64_NAR = -9223372036854775808 = 0x8000000000000000
 
 **When Zero is Produced**:
 
-| Operation | Condition | Result |
-|-----------|-----------|--------|
-| Any arithmetic | Underflow | 0 |
-| Multiplication | x × 0 (x ≠ NaR) | 0 |
-| Division | 0 / x (x ≠ 0, NaR) | 0 |
-| Power | 0^n (n > 0) | 0 |
-| Conversion | from 0.0 | 0 |
+| Operation      | Condition          | Result |
+|----------------|--------------------|--------|
+| Any arithmetic | Underflow          | 0      |
+| Multiplication | x × 0 (x ≠ NaR)    | 0      |
+| Division       | 0 / x (x ≠ 0, NaR) | 0      |
+| Power          | 0^n (n > 0)        | 0      |
+| Conversion     | from 0.0           | 0      |
 
 ### One (Unity)
 
@@ -493,12 +493,12 @@ For n-bit takum (n ≥ 12):
 
 ### Precision at Unity
 
-| Type | Precision at 1.0 |
-|------|-----------------|
-| takum_log8 | 3 bits |
-| takum_log16 | 11 bits |
-| takum_log32 | 27 bits |
-| takum_log64 | 59 bits |
+| Type        | Precision at 1.0|
+|-------------|-----------------|
+| takum_log8  | 3 bits          |
+| takum_log16 | 11 bits         |
+| takum_log32 | 27 bits         |
+| takum_log64 | 59 bits         |
 
 ## Implementation Edge Case Checklist
 

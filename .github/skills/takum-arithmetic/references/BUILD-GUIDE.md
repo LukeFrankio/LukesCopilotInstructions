@@ -6,21 +6,21 @@ This guide covers building and using the libtakum reference implementation.
 
 ### Required Tools
 
-| Tool | Version | Purpose |
-|------|---------|---------|
-| C Compiler (GCC/Clang/MSVC) | C99 support | Compilation |
-| Make | POSIX-compatible | Build orchestration |
-| sh | POSIX shell | Configure script |
-| ar | - | Static library creation |
-| ranlib | - | Library indexing |
+| Tool                        | Version          | Purpose                 |
+|-----------------------------|------------------|-------------------------|
+| C Compiler (GCC/Clang/MSVC) | C99 support      | Compilation             |
+| Make                        | POSIX-compatible | Build orchestration     |
+| sh                          | POSIX shell      | Configure script        |
+| ar                          | -                | Static library creation |
+| ranlib                      | -                | Library indexing        |
 
 ### Optional Tools
 
-| Tool | Purpose |
-|------|---------|
-| clang-format | Code formatting |
-| Doxygen | Documentation generation |
-| pkg-config | Build integration |
+| Tool         | Purpose                  |
+|--------------|--------------------------|
+| clang-format | Code formatting          |
+| Doxygen      | Documentation generation |
+| pkg-config   | Build integration        |
 
 ## Quick Start
 
@@ -166,18 +166,18 @@ gmake -j install  # Use gmake on BSD
 
 ## Build Targets Reference
 
-| Target | Description |
-|--------|-------------|
-| `all` | Build library and man pages (default) |
-| `libtakum.a` | Static library only |
-| `libtakum.so.*` | Shared library only |
-| `example` | Build example programs |
-| `test` / `check` | Build and run test suite |
-| `install` | Install to system |
-| `uninstall` | Remove installed files |
-| `clean` | Remove build artifacts |
-| `dist` | Create distribution tarball |
-| `format` | Run clang-format |
+| Target           | Description                           |
+|------------------|---------------------------------------|
+| `all`            | Build library and man pages (default) |
+| `libtakum.a`     | Static library only                   |
+| `libtakum.so.*`  | Shared library only                   |
+| `example`        | Build example programs                |
+| `test` / `check` | Build and run test suite              |
+| `install`        | Install to system                     |
+| `uninstall`      | Remove installed files                |
+| `clean`          | Remove build artifacts                |
+| `dist`           | Create distribution tarball           |
+| `format`         | Run clang-format                      |
 
 ## Configuration Variables
 
@@ -314,7 +314,7 @@ sudo ldconfig
 gcc program.c -ltakum -lm
 ```
 
-**Tests fail with precision errors**
+**Tests fail with precision errors?**
 
 ```bash
 # May be platform-specific long double issues

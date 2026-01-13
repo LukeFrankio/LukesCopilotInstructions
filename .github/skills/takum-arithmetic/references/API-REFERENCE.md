@@ -576,16 +576,16 @@ takum32 takum32_from_takum64(takum64 t);
 
 ## Function Summary Table
 
-| Category | Functions | Count |
-|----------|-----------|-------|
-| Arithmetic | addition, subtraction, multiplication, division | 32 |
-| Power/Root | power, integer_power, square_root, root | 32 |
-| Exponential | exp, exp_minus_1, 2_raised, 2_raised_minus_1, 10_raised, 10_raised_minus_1 | 48 |
-| Logarithmic | ln, ln_1_plus, lb, lb_1_plus, lg, lg_1_plus | 48 |
-| Trigonometric | sin, cos, tan, cot, sec, csc (+ pi_times variants) | 96 |
-| Inverse Trig | arcsin, arccos, arctan, arccot, arcsec, arccsc (+ over_pi, arctan2) | 112 |
-| Hyperbolic | sinh, cosh, tanh, coth, sech, csch | 48 |
-| Inverse Hyperbolic | arsinh, arcosh, artanh, arcoth, arsech, arcsch | 48 |
-| Utility | absolute, sign, inversion, precision, hypotenuse | 40 |
-| Conversion | float ↔ takum, takum ↔ takum | ~100 |
-| **Total** | | **~600** |
+| Category           | Functions                                                                  | Count    |
+|--------------------|----------------------------------------------------------------------------|----------|
+| Arithmetic         | addition, subtraction, multiplication, division                            | 32       |
+| Power/Root         | power, integer_power, square_root, root                                    | 32       |
+| Exponential        | exp, exp_minus_1, 2_raised, 2_raised_minus_1, 10_raised, 10_raised_minus_1 | 48       |
+| Logarithmic        | ln, ln_1_plus, lb, lb_1_plus, lg, lg_1_plus                                | 48       |
+| Trigonometric      | sin, cos, tan, cot, sec, csc (+ pi_times variants)                         | 96       |
+| Inverse Trig       | arcsin, arccos, arctan, arccot, arcsec, arccsc (+ over_pi, arctan2)        | 112      |
+| Hyperbolic         | sinh, cosh, tanh, coth, sech, csch                                         | 48       |
+| Inverse Hyperbolic | arsinh, arcosh, artanh, arcoth, arsech, arcsch                             | 48       |
+| Utility            | absolute, sign, inversion, precision, hypotenuse                           | 40       |
+| Conversion         | float ↔ takum, takum ↔ takum                                               | ~100     |
+| **Total**          |                                                                            | **~600** |

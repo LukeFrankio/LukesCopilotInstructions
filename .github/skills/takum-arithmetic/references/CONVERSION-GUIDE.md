@@ -4,7 +4,7 @@ This document provides comprehensive patterns for converting between Takum types
 
 ## Conversion Overview
 
-```
+```graph
                     ┌─────────────────┐
                     │  float32/64/ld  │
                     └────────┬────────┘
@@ -26,9 +26,9 @@ This document provides comprehensive patterns for converting between Takum types
 
 ## Float to Takum Conversion
 
-### Algorithm Overview
+### Float to Takum Algorithm Overview
 
-```
+```text
 1. Handle special cases (NaN, ±Inf, 0)
 2. Extract sign
 3. Compute logarithmic value: l = 2 × ln(|f|)
@@ -92,9 +92,9 @@ takum_log16 takum_log16_from_extended_float(long double f) {
 
 ## Takum to Float Conversion
 
-### Algorithm Overview
+### Takum to Float Algorithm Overview
 
-```
+```text
 1. Handle special cases (NaR, 0)
 2. Decode to logarithmic value l
 3. Compute: value = √e^l = e^(l/2)
@@ -262,25 +262,25 @@ if (fabs(input) > MAX_REPRESENTABLE) {
 
 ### Expansion Paths (Lossless)
 
-| From | To | Method |
-|------|-----|--------|
-| takum_log8 | takum_log16 | `<< 8` |
-| takum_log8 | takum_log32 | `<< 24` |
-| takum_log8 | takum_log64 | `<< 56` |
-| takum_log16 | takum_log32 | `<< 16` |
-| takum_log16 | takum_log64 | `<< 48` |
-| takum_log32 | takum_log64 | `<< 32` |
+| From        | To           | Method  |
+|-------------|--------------|---------|
+| takum_log8  | takum_log16  | `<< 8`  |
+| takum_log8  | takum_log32  | `<< 24` |
+| takum_log8  | takum_log64  | `<< 56` |
+| takum_log16 | takum_log32  | `<< 16` |
+| takum_log16 | takum_log64  | `<< 48` |
+| takum_log32 | takum_log64  | `<< 32` |
 
 ### Reduction Paths (Round + Saturate)
 
-| From | To | Method |
-|------|-----|--------|
-| takum_log64 | takum_log32 | Round `>> 32` |
-| takum_log64 | takum_log16 | Round `>> 48` |
-| takum_log64 | takum_log8 | Round `>> 56` |
-| takum_log32 | takum_log16 | Round `>> 16` |
-| takum_log32 | takum_log8 | Round `>> 24` |
-| takum_log16 | takum_log8 | Round `>> 8` |
+| From        | To           | Method        |
+|-------------|--------------|---------------|
+| takum_log64 | takum_log32  | Round `>> 32` |
+| takum_log64 | takum_log16  | Round `>> 48` |
+| takum_log64 | takum_log8   | Round `>> 56` |
+| takum_log32 | takum_log16  | Round `>> 16` |
+| takum_log32 | takum_log8   | Round `>> 24` |
+| takum_log16 | takum_log8   | Round `>> 8`  |
 
 ## Type Punning Patterns
 
