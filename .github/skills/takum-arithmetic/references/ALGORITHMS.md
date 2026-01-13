@@ -6,18 +6,18 @@ This document provides detailed algorithms for Takum encoding, decoding, and ari
 
 Converts an n-bit logarithmic takum to a floating-point value.
 
-### Input
+### Input — Decode Logarithmic Takum
 
 - `t`: n-bit signed integer (takum representation)
 - `n`: bit width (8, 16, 32, or 64)
 
-### Output
+### Output — Decode Logarithmic Takum
 
 - Floating-point value (or NaN for NaR, 0 for zero)
 
-### Pseudocode
+### Pseudocode — Decode Logarithmic Takum
 
-```
+```Pseudocode
 DECODE_LOG_TAKUM(t, n):
     # Handle special cases
     if t == INT_MIN(n):
@@ -86,18 +86,18 @@ const int16_t C_BIAS_LUT[16] = {
 
 Converts a floating-point value to an n-bit logarithmic takum.
 
-### Input
+### Input — Encode Float to Logarithmic Takum
 
 - `f`: floating-point value
 - `n`: target bit width (8, 16, 32, or 64)
 
-### Output
+### Output — Encode Float to Logarithmic Takum
 
 - n-bit signed integer (takum representation)
 
-### Pseudocode
+### Pseudocode — Encode Float to Logarithmic Takum
 
-```
+```Pseudocode
 ENCODE_TO_LOG_TAKUM(f, n):
     # Handle special cases
     if isnan(f):
@@ -175,7 +175,7 @@ ENCODE_TO_LOG_TAKUM(f, n):
 
 ### Regime Finding Subroutine
 
-```
+```Pseudocode
 FIND_REGIME(D, c):
     for R = 0 to 7:
         c_bias = C_BIAS_LUT[(D << 3) | R]
@@ -189,9 +189,9 @@ FIND_REGIME(D, c):
 
 Exploits the logarithmic domain for O(1) multiplication.
 
-### Pseudocode
+### Pseudocode — Logarithmic Takum Multiplication
 
-```
+```Pseudocode
 LOG_TAKUM_MULTIPLY(a, b, n):
     # Handle special cases
     if a == NaR or b == NaR:
@@ -219,7 +219,7 @@ LOG_TAKUM_MULTIPLY(a, b, n):
 
 For maximum performance, avoid full decode/encode:
 
-```
+```Pseudocode
 LOG_TAKUM_MULTIPLY_FAST(a, b, n):
     # XOR for sign (but need careful handling of NaR/zero)
     # Direct l-value computation from bit patterns
@@ -230,9 +230,9 @@ LOG_TAKUM_MULTIPLY_FAST(a, b, n):
 
 Exploits the logarithmic domain for O(1) division.
 
-### Pseudocode
+### Pseudocode — Logarithmic Takum Division
 
-```
+```Pseudocode
 LOG_TAKUM_DIVIDE(a, b, n):
     # Handle special cases
     if a == NaR or b == NaR or b == 0:
@@ -255,9 +255,9 @@ LOG_TAKUM_DIVIDE(a, b, n):
 
 O(1) bit manipulation for exact inversion.
 
-### Pseudocode
+### Pseudocode — Logarithmic Takum Inversion
 
-```
+```Pseudocode
 LOG_TAKUM_INVERT(t, n):
     if t == NaR or t == 0:
         return NaR
@@ -307,9 +307,9 @@ takum_log16 takum_log16_inversion(takum_log16 t) {
 
 Efficient O(1) power computation for integer exponents.
 
-### Pseudocode
+### Pseudocode — Integer Power (Logarithmic)
 
-```
+```Pseudocode
 LOG_TAKUM_INTEGER_POWER(t, n_exp, n):
     # Handle special cases
     if t == NaR:
@@ -345,9 +345,9 @@ LOG_TAKUM_INTEGER_POWER(t, n_exp, n):
 
 O(1) square root via halving the logarithmic value.
 
-### Pseudocode
+### Pseudocode — Square Root (Logarithmic)
 
-```
+```Pseudocode
 LOG_TAKUM_SQRT(t, n):
     if t == NaR:
         return NaR
@@ -367,9 +367,9 @@ LOG_TAKUM_SQRT(t, n):
 
 Addition requires more complex handling in logarithmic domain.
 
-### Pseudocode
+### Pseudocode — Addition (Gaussian Logarithm)
 
-```
+```Pseudocode
 LOG_TAKUM_ADD(a, b, n):
     if a == NaR or b == NaR:
         return NaR
@@ -389,7 +389,7 @@ LOG_TAKUM_ADD(a, b, n):
 
 ### Optimized Version (Gaussian Logarithm)
 
-```
+```Pseudocode
 LOG_TAKUM_ADD_GAUSSIAN(a, b, n):
     if a == NaR or b == NaR:
         return NaR
@@ -421,16 +421,16 @@ LOG_TAKUM_ADD_GAUSSIAN(a, b, n):
 
 ## Algorithm 9: Subtraction (via Gaussian Logarithm)
 
-### Pseudocode
+### Pseudocode — Subtraction (Gaussian Logarithm)
 
-```
+```Pseudocode
 LOG_TAKUM_SUBTRACT(a, b, n):
     return LOG_TAKUM_ADD(a, NEGATE(b), n)
 ```
 
 ### Optimized (Same Sign Case)
 
-```
+```Pseudocode
 LOG_TAKUM_SUBTRACT_SAME_SIGN(a, b, n):
     # Assumes a and b have same sign, computing a - b where |a| > |b|
     
@@ -456,9 +456,9 @@ LOG_TAKUM_SUBTRACT_SAME_SIGN(a, b, n):
 
 Standard banker's rounding for mantissa truncation.
 
-### Pseudocode
+### Pseudocode — Round to Nearest Even
 
-```
+```Pseudocode
 ROUND_TO_NEAREST_EVEN(value, num_bits):
     # value is the full-precision scaled mantissa
     # num_bits is the target precision
@@ -488,9 +488,9 @@ ROUND_TO_NEAREST_EVEN(value, num_bits):
 
 Converting smaller takum to larger (no precision loss).
 
-### Pseudocode
+### Pseudocode — Type Conversion (Expansion)
 
-```
+```Pseudocode
 EXPAND_TAKUM(t_small, n_small, n_large):
     # Simply left-shift to fill larger type
     shift = n_large - n_small
@@ -509,9 +509,9 @@ takum_log32 takum_log32_from_takum_log16(takum_log16 t) {
 
 Converting larger takum to smaller (precision loss possible).
 
-### Pseudocode
+### Pseudocode — Type Conversion (Reduction)
 
-```
+```Pseudocode
 REDUCE_TAKUM(t_large, n_large, n_small):
     # Round then truncate
     shift = n_large - n_small
@@ -534,7 +534,7 @@ REDUCE_TAKUM(t_large, n_large, n_small):
 
 ### Decode to L-Value
 
-```
+```Pseudocode
 DECODE_TO_L(t, n):
     # Extract l without final exp() conversion
     # (Returns the logarithmic value directly)
@@ -562,7 +562,7 @@ DECODE_TO_L(t, n):
 
 ### Encode from Sign and L-Value
 
-```
+```Pseudocode
 ENCODE_FROM_S_AND_L(sign, l, n):
     if isnan(l):
         return NaR(n)
@@ -579,15 +579,15 @@ ENCODE_FROM_S_AND_L(sign, l, n):
 
 ## Complexity Summary
 
-| Operation | Logarithmic Takum | Linear Takum |
-|-----------|------------------|--------------|
-| Negation | O(1) | O(1) |
-| Comparison | O(1) | O(1) |
-| Multiplication | O(1) | O(decode + encode) |
-| Division | O(1) | O(decode + encode) |
-| Inversion | O(1) | O(decode + encode) |
-| Integer Power | O(1) | O(decode + encode) |
-| Square Root | O(1) | O(decode + encode) |
-| Addition | O(Gaussian log) | O(1) |
-| Subtraction | O(Gaussian log) | O(1) |
-| Transcendentals | O(float comp) | O(float comp) |
+| Operation       | Logarithmic Takum | Linear Takum       |
+|-----------------|------------------ |--------------------|
+| Negation        | O(1)              | O(1)               |
+| Comparison      | O(1)              | O(1)               |
+| Multiplication  | O(1)              | O(decode + encode) |
+| Division        | O(1)              | O(decode + encode) |
+| Inversion       | O(1)              | O(decode + encode) |
+| Integer Power   | O(1)              | O(decode + encode) |
+| Square Root     | O(1)              | O(decode + encode) |
+| Addition        | O(Gaussian log)   | O(1)               |
+| Subtraction     | O(Gaussian log)   | O(1)               |
+| Transcendentals | O(float comp)     | O(float comp)      |
