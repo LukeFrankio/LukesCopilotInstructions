@@ -6,7 +6,7 @@ This document provides the complete specification for Takum bit-level encoding.
 
 ### General Layout (n-bit Takum)
 
-```
+```Ascii
 MSB                                                              LSB
 ┌─────┬─────┬─────────────┬────────────────────┬────────────────────┐
 │  S  │  D  │   R₂R₁R₀    │   Characteristic   │      Mantissa      │
@@ -16,13 +16,13 @@ MSB                                                              LSB
 
 ### Field Definitions
 
-| Field | Bits | Range | Description |
-|-------|------|-------|-------------|
-| **S** (Sign) | 1 | {0, 1} | Sign bit: 0 = positive, 1 = negative |
-| **D** (Direction) | 1 | {0, 1} | Direction: 0 = magnitude < 1, 1 = magnitude ≥ 1 |
-| **R** (Regime) | 3 | {0, ..., 7} | Determines characteristic length |
-| **C** (Characteristic) | r | Variable | Integer part of logarithmic exponent |
-| **M** (Mantissa) | n-5-r | Variable | Fractional precision bits |
+| Field                         | Bits  | Range           | Description                                         |
+|:------------------------------|:-----:|:---------------:|:---------------------------------------------------|
+| **S** (Sign)                  | 1     | {0, 1}          | Sign bit: 0 = positive, 1 = negative               |
+| **D** (Direction)             | 1     | {0, 1}          | Direction: 0 = magnitude < 1, 1 = magnitude ≥ 1    |
+| **R** (Regime)                | 3     | {0, ..., 7}     | Determines characteristic length                   |
+| **C** (Characteristic)        | r     | Variable        | Integer part of logarithmic exponent              |
+| **M** (Mantissa)              | n-5-r | Variable        | Fractional precision bits                          |
 
 ## Sign Field (S)
 
@@ -37,7 +37,7 @@ The sign bit determines the number's sign:
 
 ### Two's Complement Encoding
 
-```
+```text
 Positive value t:    stored directly as signed integer
 Negative value -t:   stored as two's complement of |t|
 ```
@@ -61,7 +61,7 @@ The direction bit indicates whether the magnitude is less than or greater than 1
 
 The direction determines the characteristic bias:
 
-```
+```text
 D = 0:  c_min = -255, c_max = -1   (negative characteristics)
 D = 1:  c_min = 0,    c_max = 254  (non-negative characteristics)
 ```
@@ -83,7 +83,7 @@ The 3-bit regime encodes the number of additional characteristic bits (r):
 
 ### Regime Formula
 
-```
+```text
 r = R (direct value interpretation)
 mantissa_bits = n - 5 - r
 ```
@@ -96,30 +96,30 @@ The characteristic encodes the integer part of the logarithmic exponent.
 
 The characteristic is encoded as an unsigned integer offset from a bias:
 
-```
+```text
 c = c_bias[D][R] + C_bits
 ```
 
 ### Characteristic Bias Lookup Table
 
-| Index | D | R | c_bias | Representable c values |
-|-------|---|---|--------|----------------------|
-| 0 | 0 | 0 | -255 | {-255} |
-| 1 | 0 | 1 | -127 | {-127, -126} |
-| 2 | 0 | 2 | -63 | {-63, -62, -61, -60} |
-| 3 | 0 | 3 | -31 | {-31, ..., -24} |
-| 4 | 0 | 4 | -15 | {-15, ..., -8} |
-| 5 | 0 | 5 | -7 | {-7, ..., 0} |
-| 6 | 0 | 6 | -3 | {-3, ..., 4} |
-| 7 | 0 | 7 | -1 | {-1, ..., 14} |
-| 8 | 1 | 0 | 0 | {0} |
-| 9 | 1 | 1 | 1 | {1, 2} |
-| 10 | 1 | 2 | 3 | {3, 4, 5, 6} |
-| 11 | 1 | 3 | 7 | {7, ..., 14} |
-| 12 | 1 | 4 | 15 | {15, ..., 22} |
-| 13 | 1 | 5 | 31 | {31, ..., 38} |
-| 14 | 1 | 6 | 63 | {63, ..., 78} |
-| 15 | 1 | 7 | 127 | {127, ..., 254} |
+| Index | D | R | c_bias | Representable c values       |
+|:-----:|:-:|:-:|:------:|:----------------------------|
+| 0     | 0 | 0 | -255   | {-255}                      |
+| 1     | 0 | 1 | -127   | {-127, -126}               |
+| 2     | 0 | 2 | -63    | {-63, -62, -61, -60}       |
+| 3     | 0 | 3 | -31    | {-31, ..., -24}            |
+| 4     | 0 | 4 | -15    | {-15, ..., -8}             |
+| 5     | 0 | 5 | -7     | {-7, ..., 0}               |
+| 6     | 0 | 6 | -3     | {-3, ..., 4}               |
+| 7     | 0 | 7 | -1     | {-1, ..., 14}              |
+| 8     | 1 | 0 | 0      | {0}                        |
+| 9     | 1 | 1 | 1      | {1, 2}                     |
+| 10    | 1 | 2 | 3      | {3, 4, 5, 6}               |
+| 11    | 1 | 3 | 7      | {7, ..., 14}               |
+| 12    | 1 | 4 | 15     | {15, ..., 22}              |
+| 13    | 1 | 5 | 31     | {31, ..., 38}              |
+| 14    | 1 | 6 | 63     | {63, ..., 78}              |
+| 15    | 1 | 7 | 127    | {127, ..., 254}            |
 
 ### C Code for Bias LUT
 
@@ -138,7 +138,7 @@ The mantissa provides fractional precision within the characteristic interval.
 
 ### Mantissa Interpretation
 
-```
+```text
 mantissa_value = M / 2^p
 ```
 
@@ -151,7 +151,7 @@ Where:
 
 **Key property**: For any n-bit takum (n ≥ 12):
 
-```
+```text
 minimum_mantissa_bits = n - 5 - 7 = n - 12
 ```
 
@@ -170,7 +170,7 @@ Examples:
 
 Value: 1.0 = √e^0
 
-```
+```text
 l = 0  (logarithmic value)
 c = 0  (characteristic)
 m = 0  (mantissa)
@@ -186,7 +186,7 @@ Bit pattern: 0|1|000|00000000000 = 0x2000
 
 Value: 2.0 = √e^(2·ln(2)) ≈ √e^1.386
 
-```
+```text
 l ≈ 1.386
 c = 1
 m ≈ 0.386
@@ -202,7 +202,7 @@ Bit pattern: 0|1|001|0|1100001011 = 0x260B (approximate)
 
 Value: 0.5 = √e^(2·ln(0.5)) = √e^(-1.386...)
 
-```
+```text
 l ≈ -1.386
 c = -2 (floor)
 m ≈ 0.614
@@ -216,21 +216,21 @@ Bit pattern: 0|0|110|1|10100 = 0x0D94 (approximate)
 
 ### Example 4: NaR
 
-```
+```text
 Bit pattern: 1|0|000|00000000000 = 0x8000 (INT16_MIN)
 ```
 
 ### Example 5: Zero
 
-```
+```text
 Bit pattern: 0|0|000|00000000000 = 0x0000
 ```
 
 ## Decoding Algorithm
 
-### Pseudocode
+### Pseudocode — Decoding Algorithm
 
-```
+```Pseudocode
 DECODE(bits, n):
     if bits == NaR_PATTERN:
         return NaR
@@ -272,9 +272,9 @@ DECODE(bits, n):
 
 ## Encoding Algorithm
 
-### Pseudocode
+### Pseudocode — Encoding Algorithm
 
-```
+```Pseudocode
 ENCODE(l, n):
     if isnan(l):
         return NaR_PATTERN
@@ -327,24 +327,24 @@ ENCODE(l, n):
 
 ### takum_log16 (n=16)
 
-| D | R | r | p | Total fixed | c range |
-|---|---|---|---|-------------|---------|
-| 0 | 0 | 0 | 11 | 5 | {-255} |
-| 0 | 1 | 1 | 10 | 6 | {-127, -126} |
-| 0 | 2 | 2 | 9 | 7 | {-63...-60} |
-| 0 | 3 | 3 | 8 | 8 | {-31...-24} |
-| 0 | 4 | 4 | 7 | 9 | {-15...-8} |
-| 0 | 5 | 5 | 6 | 10 | {-7...0} |
-| 0 | 6 | 6 | 5 | 11 | {-3...4} |
-| 0 | 7 | 7 | 4 | 12 | {-1...14} |
-| 1 | 0 | 0 | 11 | 5 | {0} |
-| 1 | 1 | 1 | 10 | 6 | {1, 2} |
-| 1 | 2 | 2 | 9 | 7 | {3...6} |
-| 1 | 3 | 3 | 8 | 8 | {7...14} |
-| 1 | 4 | 4 | 7 | 9 | {15...22} |
-| 1 | 5 | 5 | 6 | 10 | {31...38} |
-| 1 | 6 | 6 | 5 | 11 | {63...78} |
-| 1 | 7 | 7 | 4 | 12 | {127...254} |
+| D | R | r | p  | Total fixed | c range        |
+|:-:|:-:|:-:|:--:|:-----------:|:---------------|
+| 0 | 0 | 0 | 11 | 5           | {-255}         |
+| 0 | 1 | 1 | 10 | 6           | {-127, -126}   |
+| 0 | 2 | 2 | 9  | 7           | {-63...-60}    |
+| 0 | 3 | 3 | 8  | 8           | {-31...-24}    |
+| 0 | 4 | 4 | 7  | 9           | {-15...-8}     |
+| 0 | 5 | 5 | 6  | 10          | {-7...0}       |
+| 0 | 6 | 6 | 5  | 11          | {-3...4}       |
+| 0 | 7 | 7 | 4  | 12          | {-1...14}      |
+| 1 | 0 | 0 | 11 | 5           | {0}            |
+| 1 | 1 | 1 | 10 | 6           | {1, 2}         |
+| 1 | 2 | 2 | 9  | 7           | {3...6}        |
+| 1 | 3 | 3 | 8  | 8           | {7...14}       |
+| 1 | 4 | 4 | 7  | 9           | {15...22}      |
+| 1 | 5 | 5 | 6  | 10          | {31...38}      |
+| 1 | 6 | 6 | 5  | 11          | {63...78}      |
+| 1 | 7 | 7 | 4  | 12          | {127...254}    |
 
 ## Value Range Summary
 
@@ -359,7 +359,7 @@ ENCODE(l, n):
 
 ### Dynamic Range (in decades)
 
-```
+```text
 For n ≥ 16: ~111 decades (from 10^-56 to 10^55)
 ```
 
