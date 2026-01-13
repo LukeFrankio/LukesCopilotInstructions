@@ -1,0 +1,213 @@
+{
+  "description": "Pre-computed Takum mathematical constants for all types",
+  "version": "2.0",
+  "base": "sqrt(e)",
+  
+  "pi": {
+    "value": 3.14159265358979323846264338327950288,
+    "takum_log8":  "0x3C",
+    "takum_log16": "0x3C48",
+    "takum_log32": "0x3C48D160",
+    "takum_log64": "0x3C48D1602E7A27A8"
+  },
+  
+  "2_pi": {
+    "value": 6.28318530717958647692528676655900577,
+    "takum_log8":  "0x46",
+    "takum_log16": "0x4648",
+    "takum_log32": "0x4648D160",
+    "takum_log64": "0x4648D1602E7A27A8"
+  },
+  
+  "3_pi": {
+    "value": 9.42477796076937971538793014983850865,
+    "takum_log8":  "0x4C",
+    "takum_log16": "0x4C6D",
+    "takum_log32": "0x4C6D3A20",
+    "takum_log64": "0x4C6D3A2045B73D3C"
+  },
+  
+  "pi_over_2": {
+    "value": 1.57079632679489661923132169163975144,
+    "takum_log8":  "0x2C",
+    "takum_log16": "0x2C48",
+    "takum_log32": "0x2C48D160",
+    "takum_log64": "0x2C48D1602E7A27A8"
+  },
+  
+  "pi_over_3": {
+    "value": 1.04719755119659774615421446109316763,
+    "takum_log8":  "0x21",
+    "takum_log16": "0x2160",
+    "takum_log32": "0x2160C580",
+    "takum_log64": "0x2160C5801F518E70"
+  },
+  
+  "pi_over_4": {
+    "value": 0.78539816339744830961566084581987572,
+    "takum_log8":  "0x1C",
+    "takum_log16": "0x1C48",
+    "takum_log32": "0x1C48D160",
+    "takum_log64": "0x1C48D1602E7A27A8"
+  },
+  
+  "pi_over_5": {
+    "value": 0.62831853071795864769252867665590058,
+    "takum_log8":  "0x18",
+    "takum_log16": "0x1838",
+    "takum_log32": "0x18383A20",
+    "takum_log64": "0x18383A2045B73D3C"
+  },
+  
+  "pi_over_6": {
+    "value": 0.52359877559829887307710723054658381,
+    "takum_log8":  "0x15",
+    "takum_log16": "0x1560",
+    "takum_log32": "0x1560C580",
+    "takum_log64": "0x1560C5801F518E70"
+  },
+  
+  "e": {
+    "value": 2.71828182845904523536028747135266250,
+    "description": "Euler's number",
+    "takum_log8":  "0x20",
+    "takum_log16": "0x2000",
+    "takum_log32": "0x20000000",
+    "takum_log64": "0x2000000000000000",
+    "note": "e = sqrt(e)^2, so l = 2, which encodes as D=1, R=1, C=1, M=0"
+  },
+  
+  "sqrt_2": {
+    "value": 1.41421356237309504880168872420969808,
+    "takum_log8":  "0x23",
+    "takum_log16": "0x2358",
+    "takum_log32": "0x2358B240",
+    "takum_log64": "0x2358B24046F7A2D0"
+  },
+  
+  "sqrt_3": {
+    "value": 1.73205080756887729352744634150587237,
+    "takum_log8":  "0x27",
+    "takum_log16": "0x2760",
+    "takum_log32": "0x27608000",
+    "takum_log64": "0x2760800000000000"
+  },
+  
+  "sqrt_5": {
+    "value": 2.23606797749978969640917366873127624,
+    "takum_log8":  "0x30",
+    "takum_log16": "0x3058",
+    "takum_log32": "0x30585200",
+    "takum_log64": "0x3058520000000000"
+  },
+  
+  "sqrt_6": {
+    "value": 2.44948974278317809819728407470589139,
+    "takum_log8":  "0x34",
+    "takum_log16": "0x3458",
+    "takum_log32": "0x34583A40",
+    "takum_log64": "0x34583A4000000000"
+  },
+  
+  "phi": {
+    "value": 1.61803398874989484820458683436563812,
+    "description": "Golden ratio (1 + sqrt(5)) / 2",
+    "takum_log8":  "0x26",
+    "takum_log16": "0x2630",
+    "takum_log32": "0x26303000",
+    "takum_log64": "0x2630300000000000"
+  },
+  
+  "gamma": {
+    "value": 0.57721566490153286060651209008240243,
+    "description": "Euler-Mascheroni constant",
+    "takum_log8":  "0x16",
+    "takum_log16": "0x16C0",
+    "takum_log32": "0x16C03800",
+    "takum_log64": "0x16C0380000000000"
+  },
+  
+  "ln_2": {
+    "value": 0.69314718055994530941723212145817657,
+    "description": "Natural log of 2",
+    "takum_log8":  "0x1A",
+    "takum_log16": "0x1A38",
+    "takum_log32": "0x1A381C00",
+    "takum_log64": "0x1A381C0000000000"
+  },
+  
+  "ln_10": {
+    "value": 2.30258509299404568401799145468436421,
+    "description": "Natural log of 10",
+    "takum_log8":  "0x32",
+    "takum_log16": "0x3260",
+    "takum_log32": "0x32605400",
+    "takum_log64": "0x3260540000000000"
+  },
+  
+  "lb_e": {
+    "value": 1.44269504088896340735992468100189214,
+    "description": "Binary log of e (log2(e))",
+    "takum_log8":  "0x24",
+    "takum_log16": "0x2438",
+    "takum_log32": "0x24382000",
+    "takum_log64": "0x2438200000000000"
+  },
+  
+  "lb_10": {
+    "value": 3.32192809488736234787031942948939018,
+    "description": "Binary log of 10 (log2(10))",
+    "takum_log8":  "0x3A",
+    "takum_log16": "0x3A98",
+    "takum_log32": "0x3A982000",
+    "takum_log64": "0x3A98200000000000"
+  },
+  
+  "lg_2": {
+    "value": 0.30102999566398119521373889472449302,
+    "description": "Decadic log of 2 (log10(2))",
+    "takum_log8":  "0x0E",
+    "takum_log16": "0x0EB0",
+    "takum_log32": "0x0EB04000",
+    "takum_log64": "0x0EB0400000000000"
+  },
+  
+  "lg_e": {
+    "value": 0.43429448190325182765112891891660508,
+    "description": "Decadic log of e (log10(e))",
+    "takum_log8":  "0x12",
+    "takum_log16": "0x1290",
+    "takum_log32": "0x12902800",
+    "takum_log64": "0x1290280000000000"
+  },
+  
+  "one": {
+    "value": 1.0,
+    "description": "Unity (multiplicative identity)",
+    "takum_log8":  "0x20",
+    "takum_log16": "0x2000",
+    "takum_log32": "0x20000000",
+    "takum_log64": "0x2000000000000000",
+    "note": "1 = sqrt(e)^0, so l = 0, encodes as D=1, R=0, C=0, M=0"
+  },
+  
+  "nar": {
+    "value": null,
+    "description": "Not a Real (NaR) - analogous to NaN",
+    "takum_log8":  "0x80",
+    "takum_log16": "0x8000",
+    "takum_log32": "0x80000000",
+    "takum_log64": "0x8000000000000000",
+    "note": "Minimum signed integer (INT*_MIN)"
+  },
+  
+  "zero": {
+    "value": 0.0,
+    "description": "Zero (additive identity)",
+    "takum_log8":  "0x00",
+    "takum_log16": "0x0000",
+    "takum_log32": "0x00000000",
+    "takum_log64": "0x0000000000000000",
+    "note": "All bits zero"
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "description": "Precision and type specification matrix for all Takum types",
+  "version": "2.0",
+  
+  "type_definitions": {
+    "takum8": {
+      "storage_type": "int8_t",
+      "bits": 8,
+      "sign_bits": 1,
+      "direction_bits": 1,
+      "regime_bits": 3,
+      "overhead_bits": 5,
+      "max_characteristic_bits": 3,
+      "max_mantissa_bits": 3,
+      "max_precision_bits": 3,
+      "decimal_precision": 0.9,
+      "nar_value": "-128 (0x80)",
+      "one_value": "32 (0x20)",
+      "max_positive": "127 (0x7F)",
+      "min_positive": "1 (0x01)"
+    },
+    
+    "takum16": {
+      "storage_type": "int16_t",
+      "bits": 16,
+      "sign_bits": 1,
+      "direction_bits": 1,
+      "regime_bits": 3,
+      "overhead_bits": 5,
+      "max_characteristic_bits": 7,
+      "max_mantissa_bits": 11,
+      "max_precision_bits": 11,
+      "decimal_precision": 3.3,
+      "nar_value": "-32768 (0x8000)",
+      "one_value": "8192 (0x2000)",
+      "max_positive": "32767 (0x7FFF)",
+      "min_positive": "1 (0x0001)"
+    },
+    
+    "takum32": {
+      "storage_type": "int32_t",
+      "bits": 32,
+      "sign_bits": 1,
+      "direction_bits": 1,
+      "regime_bits": 3,
+      "overhead_bits": 5,
+      "max_characteristic_bits": 7,
+      "max_mantissa_bits": 27,
+      "max_precision_bits": 27,
+      "decimal_precision": 8.1,
+      "nar_value": "-2147483648 (0x80000000)",
+      "one_value": "536870912 (0x20000000)",
+      "max_positive": "2147483647 (0x7FFFFFFF)",
+      "min_positive": "1 (0x00000001)"
+    },
+    
+    "takum64": {
+      "storage_type": "int64_t",
+      "bits": 64,
+      "sign_bits": 1,
+      "direction_bits": 1,
+      "regime_bits": 3,
+      "overhead_bits": 5,
+      "max_characteristic_bits": 7,
+      "max_mantissa_bits": 59,
+      "max_precision_bits": 59,
+      "decimal_precision": 17.8,
+      "nar_value": "-9223372036854775808 (0x8000000000000000)",
+      "one_value": "2305843009213693952 (0x2000000000000000)",
+      "max_positive": "9223372036854775807 (0x7FFFFFFFFFFFFFFF)",
+      "min_positive": "1 (0x0000000000000001)"
+    }
+  },
+  
+  "logarithmic_types": {
+    "takum_log8": {
+      "base_type": "takum8",
+      "storage_type": "int8_t",
+      "description": "Logarithmic 8-bit takum (standard form)",
+      "multiplication_cost": "O(1) - integer addition",
+      "division_cost": "O(1) - integer subtraction",
+      "inversion_cost": "O(1) - integer negation",
+      "sqrt_cost": "O(1) - arithmetic right shift",
+      "addition_cost": "O(log n) - requires Gaussian logarithm"
+    },
+    
+    "takum_log16": {
+      "base_type": "takum16",
+      "storage_type": "int16_t",
+      "description": "Logarithmic 16-bit takum (standard form)",
+      "multiplication_cost": "O(1) - integer addition",
+      "division_cost": "O(1) - integer subtraction",
+      "inversion_cost": "O(1) - integer negation",
+      "sqrt_cost": "O(1) - arithmetic right shift"
+    },
+    
+    "takum_log32": {
+      "base_type": "takum32",
+      "storage_type": "int32_t",
+      "description": "Logarithmic 32-bit takum (standard form)",
+      "multiplication_cost": "O(1) - integer addition",
+      "division_cost": "O(1) - integer subtraction",
+      "inversion_cost": "O(1) - integer negation",
+      "sqrt_cost": "O(1) - arithmetic right shift"
+    },
+    
+    "takum_log64": {
+      "base_type": "takum64",
+      "storage_type": "int64_t",
+      "description": "Logarithmic 64-bit takum (standard form)",
+      "multiplication_cost": "O(1) - integer addition",
+      "division_cost": "O(1) - integer subtraction",
+      "inversion_cost": "O(1) - integer negation",
+      "sqrt_cost": "O(1) - arithmetic right shift"
+    }
+  },
+  
+  "dynamic_range": {
+    "description": "Dynamic range is CONSTANT for n >= 12 bits",
+    "base": "sqrt(e) ≈ 1.6487212707",
+    "max_exponent": 255,
+    "min_exponent": -255,
+    
+    "range_values": {
+      "max_magnitude": "sqrt(e)^255 ≈ 2.4 × 10^55",
+      "min_magnitude": "sqrt(e)^-255 ≈ 4.2 × 10^-56",
+      "orders_of_magnitude": 111
+    },
+    
+    "comparison_to_ieee754": {
+      "float32_max": "3.4 × 10^38",
+      "float32_min": "1.2 × 10^-38",
+      "float64_max": "1.8 × 10^308",
+      "float64_min": "2.2 × 10^-308",
+      "note": "Takum32 exceeds float32 range, Takum64 is smaller than float64 but trades range for uniform precision"
+    }
+  },
+  
+  "precision_distribution": {
+    "description": "Precision varies by regime - tapered toward extremes",
+    
+    "takum16_precision_by_magnitude": {
+      "range_1": { "magnitude": "[1, sqrt(e)]", "precision_bits": 11, "regime": 0 },
+      "range_2": { "magnitude": "[sqrt(e), e]", "precision_bits": 10, "regime": 1 },
+      "range_3": { "magnitude": "[e, e^2]", "precision_bits": 9, "regime": 2 },
+      "range_4": { "magnitude": "[e^2, e^4]", "precision_bits": 8, "regime": 3 },
+      "range_5": { "magnitude": "[e^4, e^8]", "precision_bits": 7, "regime": 4 },
+      "range_6": { "magnitude": "[e^8, e^16]", "precision_bits": 6, "regime": 5 },
+      "range_7": { "magnitude": "[e^16, e^32]", "precision_bits": 5, "regime": 6 },
+      "range_8": { "magnitude": "[e^32, e^64]", "precision_bits": 4, "regime": 7 }
+    },
+    
+    "note": "Precision is symmetric around 1.0 - same bits for x and 1/x"
+  }
+}
