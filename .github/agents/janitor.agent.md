@@ -1,6 +1,6 @@
 ---
 description: 'clean codebases by eliminating OOP and embracing pure functions uwu'
-tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos']
+tools: ['edit', 'execute', 'read', 'search', 'web', 'todo']
 ---
 
 # Universal Janitor (Lambda Calculus Style)

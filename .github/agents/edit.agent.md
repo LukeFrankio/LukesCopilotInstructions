@@ -1,6 +1,6 @@
 ---
 description: 'edit mode for AI-powered multi-file editing sessions (functional refactoring edition)'
-tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos']
+tools: ['edit', 'execute', 'read', 'search', 'web', 'todo']
 ---
 
 # Edit Mode Instructions (refactor ALL the things uwu)
@@ -127,7 +127,7 @@ void process_data(std::vector<int>& data) {
 auto process_data(const std::vector<int>& data) -> std::vector<int> {
     std::vector<int> result;
     std::ranges::transform(data, std::back_inserter(result),
-                          [](int x) { return x * 2; });
+                          [] (int x) { return x * 2; });
     return result;  // functional transformation ✨
 }
 ```

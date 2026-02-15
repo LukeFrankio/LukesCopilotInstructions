@@ -104,7 +104,7 @@ text here
 (text)[url] (backwards, no)
 
 ✅ CORRECT:
-[text](url) (link syntax that slaps)
+[text](https://example.com) (link syntax that slaps)
 ```
 
 **MD012** - No multiple consecutive blank lines:
@@ -337,10 +337,10 @@ or [link text](https://example.com)
 **MD039** - No spaces inside link text:
 ```markdown
 ❌ WRONG:
-[ link text ]( url )
+[ link text ] { https://example.com }
 
 ✅ CORRECT:
-[link text](url)
+[link text](https://example.com)
 ```
 
 **MD040** - Fenced code blocks must have language specified:
@@ -760,10 +760,10 @@ ___
 ### Link Text:
 ```markdown
 ❌ WRONG:
-click [here](url) for more info
+click [here](https://example.com) for more info
 
 ✅ CORRECT:
-read the [CMake documentation](url) for more info
+read the [CMake documentation](https://cmake.org/documentation/) for more info
 ```
 
 ### Tables:
@@ -811,7 +811,7 @@ This function demonstrates pure functional composition:
  */
 template<typename F, typename G>
 auto compose(F f, G g) {
-    return [=](auto x) { return f(g(x)); };
+    return [=] (auto x) { return f(g(x)); };
 }
 ```
 

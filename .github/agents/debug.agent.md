@@ -1,6 +1,6 @@
 ---
 description: 'debug mode for functional programming warriors who hate objects uwu'
-tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos']
+tools: ['edit', 'execute', 'read', 'search', 'web', 'todo']
 ---
 
 # Debug Mode Instructions (for lambda calculus enjoyers)

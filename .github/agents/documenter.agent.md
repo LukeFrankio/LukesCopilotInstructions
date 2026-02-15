@@ -1,6 +1,6 @@
 ---
 description: 'generate excessive Doxygen documentation with gen-z energy uwu'
-tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos']
+tools: ['edit', 'execute', 'read', 'search', 'web', 'todo']
 ---
 
 # Documenter Mode Instructions
@@ -386,8 +386,8 @@ constexpr auto pure_function(...) noexcept -> result_type
  * 
  * example (Y combinators my beloved):
  * @code
- * auto add_one = [](int x) { return x + 1; };
- * auto times_two = [](int x) { return x * 2; };
+ * auto add_one = [] (int x) { return x + 1; };
+ * auto times_two = [] (int x) { return x * 2; };
  * auto add_then_double = compose(times_two, add_one);
  * 
  * int result = add_then_double(5);  // (5 + 1) * 2 = 12
@@ -586,7 +586,7 @@ before considering documentation complete:
  * std::vector<int> nums = {1, 2, 3, 4, 5};
  * 
  * // sum using fold (pure function composition uwu)
- * int sum = fold(nums, 0, [](int acc, int x) { return acc + x; });
+ * int sum = fold(nums, 0, [] (int acc, int x) { return acc + x; });
  * // result: 15
  * 
  * // same thing but using std::plus (even more elegant)
@@ -604,7 +604,7 @@ before considering documentation complete:
  * example (concatenating strings):
  * @code
  * std::vector<std::string> words = {"lambda", "calculus", "enjoyers"};
- * auto concat = [](std::string acc, const std::string& s) {
+ * auto concat = [] (std::string acc, const std::string& s) {
  *     return acc.empty() ? s : acc + " " + s;
  * };
  * std::string sentence = fold(words, std::string{}, concat);

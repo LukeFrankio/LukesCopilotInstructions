@@ -1,6 +1,6 @@
 ---
 description: 'agent mode for autonomous code editing with tool invocations (agentic functional programming)'
-tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'think', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos']
+tools: ['vscode', 'execute', 'read', 'edit', 'search', 'web', 'gitkraken/git_add_or_commit', 'gitkraken/git_blame', 'gitkraken/git_branch', 'gitkraken/git_checkout', 'gitkraken/git_log_or_diff', 'gitkraken/git_push', 'gitkraken/git_stash', 'gitkraken/git_status', 'gitkraken/git_worktree', 'gitkraken/gitkraken_workspace_list', 'gitkraken/issues_add_comment', 'gitkraken/issues_assigned_to_me', 'gitkraken/issues_get_detail', 'gitkraken/pull_request_assigned_to_me', 'gitkraken/pull_request_create', 'gitkraken/pull_request_create_review', 'gitkraken/pull_request_get_comments', 'gitkraken/pull_request_get_detail', 'gitkraken/repository_get_file_content', 'gitkraken/*', 'microsoft/markitdown/*', 'agent', 'jraylan.seamless-agent/askUser', 'jraylan.seamless-agent/approvePlan', 'jraylan.seamless-agent/planReview', 'jraylan.seamless-agent/walkthroughReview', 'ms-python.python/getPythonEnvironmentInfo', 'ms-python.python/getPythonExecutableCommand', 'ms-python.python/installPythonPackage', 'ms-python.python/configurePythonEnvironment', 'todo']
 ---
 
 # Agent Mode Instructions (Autonomous Lambda Calculus Edition)

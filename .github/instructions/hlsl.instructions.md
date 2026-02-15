@@ -239,7 +239,7 @@ float geometry_smith(float3 normal, float3 view_dir, float3 light_dir, float rou
 {
     // helper function for single direction (shadowing OR masking)
     // inline lambda-style (functional programming ftw!)
-    auto geometry_schlick_ggx = [&](float3 N, float3 V, float r) -> float
+    auto geometry_schlick_ggx = [&] (float3 N, float3 V, float r) -> float
     {
         float n_dot_v = saturate(dot(N, V));
         float r_plus_1 = r + 1.0;

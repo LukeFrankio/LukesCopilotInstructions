@@ -146,8 +146,8 @@ constexpr auto add(Vector2D a, Vector2D b) noexcept -> Vector2D {
  * 
  * example (Y combinators my beloved):
  * @code
- * auto add_one = [](int x) { return x + 1; };
- * auto times_two = [](int x) { return x * 2; };
+ * auto add_one = [] (int x) { return x + 1; };
+ * auto times_two = [] (int x) { return x * 2; };
  * auto add_then_double = compose(times_two, add_one);
  * 
  * int result = add_then_double(5);  // (5 + 1) * 2 = 12
@@ -156,7 +156,7 @@ constexpr auto add(Vector2D a, Vector2D b) noexcept -> Vector2D {
  */
 template<typename F, typename G>
 constexpr auto compose(F&& f, G&& g) {
-    return [f = std::forward<F>(f), g = std::forward<G>(g)](auto&& x) {
+    return [f = std::forward<F>(f), g = std::forward<G>(g)] (auto&& x) {
         return f(g(std::forward<decltype(x)>(x)));
     };
 }
@@ -184,7 +184,7 @@ constexpr auto compose(F&& f, G&& g) {
  * example:
  * @code
  * std::vector<int> nums = {1, 2, 3, 4, 5};
- * auto squared = map(nums, [](int x) { return x * x; });
+ * auto squared = map(nums, [] (int x) { return x * x; });
  * // squared = {1, 4, 9, 16, 25}
  * // nums unchanged (immutability preserved ✨)
  * @endcode
@@ -216,7 +216,7 @@ auto map(const Range& range, Func func) {
  * example:
  * @code
  * std::vector<int> nums = {1, 2, 3, 4, 5, 6};
- * auto evens = filter(nums, [](int x) { return x % 2 == 0; });
+ * auto evens = filter(nums, [] (int x) { return x % 2 == 0; });
  * // evens = {2, 4, 6}
  * @endcode
  */
@@ -253,7 +253,7 @@ auto filter(const Range& range, Pred pred) {
  * example:
  * @code
  * std::vector<int> nums = {1, 2, 3, 4, 5};
- * int sum = reduce(nums, 0, [](int acc, int x) { return acc + x; });
+ * int sum = reduce(nums, 0, [] (int acc, int x) { return acc + x; });
  * // sum = 15 (0 + 1 + 2 + 3 + 4 + 5)
  * @endcode
  */
@@ -367,7 +367,7 @@ using Shape = std::variant<Circle, Rectangle, Triangle>;
  * @note exhaustive matching (compiler checks all cases)
  */
 constexpr auto area(const Shape& shape) -> double {
-    return std::visit([](const auto& s) -> double {
+    return std::visit([] (const auto& s) -> double {
         using T = std::decay_t<decltype(s)>;
         
         if constexpr (std::is_same_v<T, Circle>) {
@@ -508,8 +508,8 @@ constexpr auto add(T a, T b) noexcept -> T {
  */
 auto process_numbers(const std::vector<int>& nums) {
     return nums 
-        | std::views::filter([](int x) { return x % 2 == 0; })
-        | std::views::transform([](int x) { return x * x; })
+        | std::views::filter([] (int x) { return x % 2 == 0; })
+        | std::views::transform([] (int x) { return x * x; })
         | std::ranges::to<std::vector>();
 }
 ```
@@ -533,7 +533,7 @@ auto process_numbers(const std::vector<int>& nums) {
  * example:
  * @code
  * std::vector<int> nums = {1, 2, 3, 4, 5};
- * auto result = find_if(nums, [](int x) { return x > 3; });
+ * auto result = find_if(nums, [] (int x) { return x > 3; });
  * 
  * if (result) {
  *     std::cout << "found: " << *result << '\n';
@@ -650,8 +650,8 @@ public:
  * 
  * // or use monadic composition
  * auto chained = divide(10.0, 2.0)
- *     .and_then([](double x) { return divide(x, 2.0); })
- *     .and_then([](double x) { return divide(x, 0.0); });  // error!
+ *     .and_then([] (double x) { return divide(x, 2.0); })
+ *     .and_then([] (double x) { return divide(x, 0.0); });  // error!
  * // chained.is_ok() == false (division by zero caught)
  * @endcode
  */
