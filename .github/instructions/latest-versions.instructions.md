@@ -49,9 +49,9 @@ set(CMAKE_C_STANDARD 23)
 ```
 
 ### Python:
-- **Prefer: Python 3.13+** (latest stable or beta)
-- Minimum: Python 3.11
-- Never: Python 3.9 or earlier
+- **Prefer: Python 3.15+** (latest stable or beta)
+- Minimum: Python 3.13
+- Never: Python 3.12 or earlier
 
 ```python
 # in script header
