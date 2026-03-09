@@ -84,64 +84,66 @@ Do not assume the subagent will "just know" it's a subagent. **Tell it explicitl
 - **Explicit Intent** (tell them: write code vs. just research)
 - **You Are The Interface** (the user sees NOTHING the subagent does, only what you tell them)
 - **Statelessness is Violence** (you cannot reply to a subagent, get it right the first time)
-- **Use The Best Model** (default to Claude Opus 4.6 — Haiku 4.5 is for peasants uwu)
+- **Use The Best Model** (default to GPT-5.4 — Opus 4.6 still owns writing quality and frontend work uwu)
 
 ## Model Selection for Subagents (CRITICAL)
 
 > "delegating to Haiku 4.5 is like hiring an intern to do brain surgery" uwu
 
-**ALWAYS use the strongest available model for subagent tasks.** The VS Code Copilot model picker defaults to lightweight models (often Haiku 4.5), but benchmark data across 22 categories proves this is a catastrophic quality loss.
+**ALWAYS use the strongest available model for subagent tasks.** As of March 2026,
+**GPT-5.4** is the new default. It beats Claude Opus 4.6 at basically everything
+that matters for agentic work: reasoning, coding, tool use, planning,
+instruction-following, and research. The only notable exceptions are **writing
+quality** and **frontend work**, where **Claude Opus 4.6** still has the edge.
 
-### The Benchmark Reality (Q1 2026 Data)
+### The Benchmark Reality (March 2026)
 
-**Claude Opus 4.6** dominates nearly every benchmark category:
+**GPT-5.4** is now the overall best general-purpose subagent model.
 
-| Category | Best Model | Score | Haiku 4.5 Score | Quality Gap |
-|----------|-----------|-------|-----------------|-------------|
-| Overall (Arena) | **Opus 4.6** | #1-2 | #66 | 64 ranks worse |
-| LiveBench (contamination-free) | **Opus 4.6** | 76.33 | 45.33 | -41% |
-| Creative Writing | **Sonnet 4.6** | 1963 Elo | Not ranked | N/A |
-| Coding (SWE-bench) | **Sonnet 4.6** | 82% | 73.3% | -8.7pp |
-| Tool Use (BFCL) | **Opus 4.6** | 77.47% | 68.7% | -8.8pp |
-| Reasoning (GPQA) | GPT-5.2 | 92.4% | 73% | -19.4pp |
-| Math (AIME 2025) | GPT-5.2/Gemini 3 Pro | 100% | Not ranked | N/A |
-| Emotional Intelligence | **Sonnet 4.6** | 1944 Elo | Not ranked | N/A |
-| Instruction Following | **Opus 4.6** | 76.33 | 45.33 | -41% |
-| Multilingual (MMMLU) | Gemini 3 Pro | 91.8% | Not ranked | N/A |
-| Planning/Decomposition | **Opus 4.6** | 76.33 | 61.32 | -20% |
-| Agentic Tasks | **Sonnet 4.6** | 82% | 73.3% | -8.7pp |
+| Work Type | Best Default Choice | Why |
+|-----------|---------------------|-----|
+| General subagent work | **GPT-5.4** | strongest all-round reasoning + coding + tool use |
+| Research and analysis | **GPT-5.4** | best overall synthesis and instruction following |
+| Coding tasks | **GPT-5.4** | best default unless a specialised writing/frontend edge is needed |
+| Planning and decomposition | **GPT-5.4** | strongest general planning model now |
+| Mathematical / STEM reasoning | **GPT-5.4** | best overall analytical model in this stack |
+| Creative writing / prose polish | **Claude Opus 4.6** | better writing quality and tone |
+| Frontend / UI work | **Claude Opus 4.6** | better taste, visual judgment, and UI polish |
+| Low-stakes trivial tasks | lightweight models | only if quality truly does not matter |
 
 ### Model Selection Rules
 
-**DEFAULT: Claude Opus 4.6** (192K context, Tools + Vision)
-- Best overall model across human preference (Arena #1-2)
-- Highest instruction following (LiveBench 76.33)
-- Best tool use / function calling (BFCL 77.47%)
-- Best planning and task decomposition
-- Largest context window in Claude line (192K)
+**DEFAULT: GPT-5.4**
+- Use this for almost everything.
+- This is now the strongest default for subagent reasoning, coding, tool use,
+  planning, debugging, research, and general execution.
+- If you are not sure which model to pick, pick **GPT-5.4**.
 
-**USE Claude Sonnet 4.6 FOR:**
-- Coding tasks (82% SWE-bench, highest of any model)
-- Creative writing (1963 Elo, #1 on EQ-Bench Creative Writing)
-- Agentic autonomous coding (strongest at SWE-bench style tasks)
-- Emotional intelligence work (1944 Elo, #1 on EQ-Bench 3)
+**USE Claude Opus 4.6 FOR:**
+- Creative writing where wording quality matters more than raw reasoning
+- Frontend / UI work where aesthetic taste and polish matter
+- Copywriting, docs polishing, and tone-sensitive prose work
+- Design-heavy tasks where visual judgment matters more than raw benchmark power
 
-**USE GPT-5.2 FOR:**
-- Pure mathematical reasoning (100% AIME 2025, 92.4% GPQA)
-- Graduate-level STEM questions (highest GPQA Diamond)
-- When you need maximum analytical precision
+**USE GPT-5.4 FOR:**
+- Complex research
+- Code generation and refactoring
+- Debugging and root-cause analysis
+- Tool-heavy agentic workflows
+- Planning, decomposition, and instruction-following
+- Mathematical / STEM work unless you specifically need a different specialised model
 
 **USE Gemini 3 Pro FOR:**
-- Multilingual/translation tasks (91.8% MMMLU, #1)
-- Tasks requiring massive context (1M+ tokens, though only 173K in VS Code)
-- Competition math (100% AIME 2025, tied with GPT-5.2)
+- Multilingual / translation-heavy tasks if it is available and clearly better suited
+- Extremely context-heavy tasks if its context window is the deciding factor
 
 **NEVER USE Claude Haiku 4.5 FOR:**
-- ❌ Complex research (45.33 LiveBench vs 76.33 for Opus = 41% worse)
-- ❌ Coding tasks (73.3% SWE-bench vs 82% for Sonnet = 8.7pp worse)
-- ❌ Reasoning tasks (73% GPQA vs 87%+ for Opus = 14pp worse)
-- ❌ Creative work (not even ranked on EQ-Bench creative benchmarks)
-- ❌ Tool use (68.7% BFCL vs 77.47% for Opus = 8.8pp worse)
+- ❌ Complex research
+- ❌ Coding tasks
+- ❌ Reasoning tasks
+- ❌ Writing that actually matters
+- ❌ Frontend work
+- ❌ Tool-heavy execution
 - ❌ Anything where quality matters (it's a lightweight model, period)
 
 **Haiku 4.5 is ONLY acceptable for:**
@@ -150,15 +152,16 @@ Do not assume the subagent will "just know" it's a subagent. **Tell it explicitl
 - ✅ High-volume low-stakes operations
 - ✅ When cost literally cannot be justified (rare in development)
 
-### Available Models in VS Code (Q1 2026)
+### Available Models in VS Code (March 2026 — check the picker)
 
 | Model | Context | Tools | Vision | Recommended Tier |
 |-------|---------|-------|--------|------------------|
-| Claude Opus 4.6 | 192K | ✅ | ✅ | **S-tier (DEFAULT)** |
-| Claude Sonnet 4.6 | 160K | ✅ | ✅ | **S-tier (coding/creative)** |
+| GPT-5.4 | varies by hosting | ✅ | varies by hosting | **S-tier (DEFAULT)** |
+| Claude Opus 4.6 | 192K | ✅ | ✅ | **S-tier (writing/frontend)** |
+| Claude Sonnet 4.6 | 160K | ✅ | ✅ | A-tier |
 | Claude Opus 4.5 | 160K | ✅ | ✅ | A-tier |
 | Claude Sonnet 4.5 | 160K | ✅ | ✅ | A-tier |
-| GPT-5.2 | 192K | ✅ | ✅ | **A-tier (math/STEM)** |
+| GPT-5.2 | 192K | ✅ | ✅ | A-tier |
 | GPT-5.2-Codex | 400K | ✅ | ✅ | A-tier (large context coding) |
 | GPT-5.3-Codex | 400K | ✅ | ✅ | A-tier (large context coding) |
 | Gemini 3 Pro | 173K | ✅ | ✅ | **A-tier (multilingual)** |
@@ -175,9 +178,9 @@ You might think: "Haiku is cheaper, so use it for subagents to save tokens."
 
 **This is wrong because:**
 1. A bad subagent result means YOU spend time re-reading, re-prompting, or fixing — your time > token cost
-2. Opus 4.6 produces correct results more often on the first try (76.33 vs 45.33 LiveBench)
+3. The quality gap between top-tier and lightweight models is not a rounding error — it's a different league
 3. The quality gap is **41%** — that's not a minor difference, it's a different league
-4. Subagent tasks are already bounded (one-shot) — the token cost is finite and predictable
+5. A wrong answer from Haiku costs more than a right answer from GPT-5.4 (in rework time)
 5. A wrong answer from Haiku costs more than a right answer from Opus (in rework time)
 
 ## When to Spawn a Subagent
@@ -254,7 +257,7 @@ The subagent is **stateless**. It knows nothing about the current conversation u
 - [ ] **Did I specify the mode?** (Research vs. Coding).
 - [ ] **⛔ Did I include the subagent identity warning?** ("You are a SUBAGENT. Do NOT use ask_user..." — MANDATORY)
 - [ ] **⛔ Did I tell it NOT to use UI tools?** (ask_user, plan_review, walkthrough_review, ask_questions — ALL FORBIDDEN)
-- [ ] **🏆 Am I using the best model?** (Opus 4.6 default, Sonnet 4.6 for coding/creative, GPT-5.2 for math/STEM — NEVER Haiku for quality work)
+- [ ] **🏆 Am I using the best model?** (GPT-5.4 default, Opus 4.6 for writing/frontend, NEVER Haiku for quality work)
 - [ ] **Did I summarize the result?** (Tell the user what happened).
 - [ ] **Did I treat the subagent like a genius intern with amnesia?** (High skill, zero memory, NO UI access).
 
