@@ -12,6 +12,7 @@ __pycache__/
 
 # IDE settings
 .idea/
+.vscode/
 *.swp
 *.swo
 *~
@@ -27,3 +28,16 @@ node_modules/
 dist/
 build/
 *.egg-info/
+
+# Local utility scripts
+scripts/
+
+# Generated documentation from local fetch tasks
+REFDOCS/Documentation/Doxygen_Overview_Manual/
+
+# Local test artifacts
+tests/test_fetch_doxygen_overview_manual.py
+.hypothesis/
+
+# Local Copilot instruction overlay
+.github/copilot-instructions.md
