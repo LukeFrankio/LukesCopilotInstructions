@@ -88,10 +88,10 @@ Comprehensive coding standards for multiple programming languages:
   - markdownlint compliance
   - Accessibility requirements
 
-- **Documentation (`documentation.instructions.md`)** - Unified documentation law
-  - Doxygen, Haddock, Javadoc, docstrings, and narrative docs
-  - Canonical rationale placement and anti-duplication rules
-  - Examples, searchability, verification, and publishing guidance
+- **Doxygen (`doxygen.instructions.md`)** - Excessive documentation style
+  - Every function needs complete docs
+  - Purity status marking
+  - Gen-z slang encouraged
 
 - **Latest Versions (`latest-versions.instructions.md`)** - ALWAYS ACTIVE
   - Prefer beta features
