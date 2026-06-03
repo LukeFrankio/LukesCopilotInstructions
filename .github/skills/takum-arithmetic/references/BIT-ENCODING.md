@@ -16,22 +16,22 @@ MSB                                                              LSB
 
 ### Field Definitions
 
-| Field                         | Bits  | Range           | Description                                         |
-|:------------------------------|:-----:|:---------------:|:----------------------------------------------------|
-| **S** (Sign)                  | 1     | {0, 1}          | Sign bit: 0 = positive, 1 = negative                |
-| **D** (Direction)             | 1     | {0, 1}          | Direction: 0 = magnitude < 1, 1 = magnitude ≥ 1     |
-| **R** (Regime)                | 3     | {0, ..., 7}     | Determines characteristic length                    |
-| **C** (Characteristic)        | r     | Variable        | Integer part of logarithmic exponent                |
-| **M** (Mantissa)              | n-5-r | Variable        | Fractional precision bits                           |
+| Field                  | Bits  |    Range    | Description                                     |
+| :--------------------- | :---: | :---------: | :---------------------------------------------- |
+| **S** (Sign)           |   1   |   {0, 1}    | Sign bit: 0 = positive, 1 = negative            |
+| **D** (Direction)      |   1   |   {0, 1}    | Direction: 0 = magnitude < 1, 1 = magnitude ≥ 1 |
+| **R** (Regime)         |   3   | {0, ..., 7} | Determines characteristic length                |
+| **C** (Characteristic) |   r   |  Variable   | Integer part of logarithmic exponent            |
+| **M** (Mantissa)       | n-5-r |  Variable   | Fractional precision bits                       |
 
 ## Sign Field (S)
 
 The sign bit determines the number's sign:
 
-| S | Meaning | Effect on Value        |
-|---|---------|----------------------- |
-| 0 | Positive| value > 0              |
-| 1 | Negative| value < 0 (except NaR) |
+| S   | Meaning  | Effect on Value        |
+| --- | -------- | ---------------------- |
+| 0   | Positive | value > 0              |
+| 1   | Negative | value < 0 (except NaR) |
 
 **Important**: Takum uses **two's complement** representation. The entire n-bit value is treated as a signed integer.
 
@@ -52,10 +52,10 @@ This means:
 
 The direction bit indicates whether the magnitude is less than or greater than 1:
 
-| D | Characteristic Range | Magnitude   |
-|---|--------------------- |-------------|
-| 0 | c ∈ {-255, ..., -1}  | \|x\| < 1   |
-| 1 | c ∈ {0, ..., 254}    | \|x\| ≥ 1   |
+| D   | Characteristic Range | Magnitude |
+| --- | -------------------- | --------- |
+| 0   | c ∈ {-255, ..., -1}  | \|x\| < 1 |
+| 1   | c ∈ {0, ..., 254}    | \|x\| ≥ 1 |
 
 ### Direction and Characteristic Relationship
 
@@ -71,7 +71,7 @@ D = 1:  c_min = 0,    c_max = 254  (non-negative characteristics)
 The 3-bit regime encodes the number of additional characteristic bits (r):
 
 | R₂R₁R₀ | r (char bits) | Mantissa bits (n=16) | Mantissa bits (n=32) |
-|--------|---------------|--------------------- |----------------------|
+| ------ | ------------- | -------------------- | -------------------- |
 | 000    | 0             | 11                   | 27                   |
 | 001    | 1             | 10                   | 26                   |
 | 010    | 2             | 9                    | 25                   |
@@ -102,24 +102,24 @@ c = c_bias[D][R] + C_bits
 
 ### Characteristic Bias Lookup Table
 
-| Index | D | R | c_bias | Representable c values      |
-|:-----:|:-:|:-:|:------:|:----------------------------|
-| 0     | 0 | 0 | -255   | {-255}                      |
-| 1     | 0 | 1 | -127   | {-127, -126}                |
-| 2     | 0 | 2 | -63    | {-63, -62, -61, -60}        |
-| 3     | 0 | 3 | -31    | {-31, ..., -24}             |
-| 4     | 0 | 4 | -15    | {-15, ..., -8}              |
-| 5     | 0 | 5 | -7     | {-7, ..., 0}                |
-| 6     | 0 | 6 | -3     | {-3, ..., 4}                |
-| 7     | 0 | 7 | -1     | {-1, ..., 14}               |
-| 8     | 1 | 0 | 0      | {0}                         |
-| 9     | 1 | 1 | 1      | {1, 2}                      |
-| 10    | 1 | 2 | 3      | {3, 4, 5, 6}                |
-| 11    | 1 | 3 | 7      | {7, ..., 14}                |
-| 12    | 1 | 4 | 15     | {15, ..., 22}               |
-| 13    | 1 | 5 | 31     | {31, ..., 38}               |
-| 14    | 1 | 6 | 63     | {63, ..., 78}               |
-| 15    | 1 | 7 | 127    | {127, ..., 254}             |
+| Index |  D  |  R  | c_bias | Representable c values |
+| :---: | :-: | :-: | :----: | :--------------------- |
+|   0   |  0  |  0  |  -255  | {-255}                 |
+|   1   |  0  |  1  |  -127  | {-127, -126}           |
+|   2   |  0  |  2  |  -63   | {-63, -62, -61, -60}   |
+|   3   |  0  |  3  |  -31   | {-31, ..., -24}        |
+|   4   |  0  |  4  |  -15   | {-15, ..., -8}         |
+|   5   |  0  |  5  |   -7   | {-7, ..., 0}           |
+|   6   |  0  |  6  |   -3   | {-3, ..., 4}           |
+|   7   |  0  |  7  |   -1   | {-1, ..., 14}          |
+|   8   |  1  |  0  |   0    | {0}                    |
+|   9   |  1  |  1  |   1    | {1, 2}                 |
+|  10   |  1  |  2  |   3    | {3, 4, 5, 6}           |
+|  11   |  1  |  3  |   7    | {7, ..., 14}           |
+|  12   |  1  |  4  |   15   | {15, ..., 22}          |
+|  13   |  1  |  5  |   31   | {31, ..., 38}          |
+|  14   |  1  |  6  |   63   | {63, ..., 78}          |
+|  15   |  1  |  7  |  127   | {127, ..., 254}        |
 
 ### C Code for Bias LUT
 
@@ -157,12 +157,12 @@ minimum_mantissa_bits = n - 5 - 7 = n - 12
 
 Examples:
 
-| Type    | n  | Min mantissa bits |
-|---------|----|-------------------|
-| takum8  | 8  | -4 (N/A)          |
-| takum16 | 16 | 4                 |
-| takum32 | 32 | 20                |
-| takum64 | 64 | 52                |
+| Type    | n   | Min mantissa bits |
+| ------- | --- | ----------------- |
+| takum8  | 8   | -4 (N/A)          |
+| takum16 | 16  | 4                 |
+| takum32 | 32  | 20                |
+| takum64 | 64  | 52                |
 
 ## Complete Encoding Examples
 
@@ -327,35 +327,35 @@ ENCODE(l, n):
 
 ### takum_log16 (n=16)
 
-| D | R | r | p  | Total fixed | c range        |
-|:-:|:-:|:-:|:--:|:-----------:|:---------------|
-| 0 | 0 | 0 | 11 | 5           | {-255}         |
-| 0 | 1 | 1 | 10 | 6           | {-127, -126}   |
-| 0 | 2 | 2 | 9  | 7           | {-63...-60}    |
-| 0 | 3 | 3 | 8  | 8           | {-31...-24}    |
-| 0 | 4 | 4 | 7  | 9           | {-15...-8}     |
-| 0 | 5 | 5 | 6  | 10          | {-7...0}       |
-| 0 | 6 | 6 | 5  | 11          | {-3...4}       |
-| 0 | 7 | 7 | 4  | 12          | {-1...14}      |
-| 1 | 0 | 0 | 11 | 5           | {0}            |
-| 1 | 1 | 1 | 10 | 6           | {1, 2}         |
-| 1 | 2 | 2 | 9  | 7           | {3...6}        |
-| 1 | 3 | 3 | 8  | 8           | {7...14}       |
-| 1 | 4 | 4 | 7  | 9           | {15...22}      |
-| 1 | 5 | 5 | 6  | 10          | {31...38}      |
-| 1 | 6 | 6 | 5  | 11          | {63...78}      |
-| 1 | 7 | 7 | 4  | 12          | {127...254}    |
+|  D  |  R  |  r  |  p  | Total fixed | c range      |
+| :-: | :-: | :-: | :-: | :---------: | :----------- |
+|  0  |  0  |  0  | 11  |      5      | {-255}       |
+|  0  |  1  |  1  | 10  |      6      | {-127, -126} |
+|  0  |  2  |  2  |  9  |      7      | {-63...-60}  |
+|  0  |  3  |  3  |  8  |      8      | {-31...-24}  |
+|  0  |  4  |  4  |  7  |      9      | {-15...-8}   |
+|  0  |  5  |  5  |  6  |     10      | {-7...0}     |
+|  0  |  6  |  6  |  5  |     11      | {-3...4}     |
+|  0  |  7  |  7  |  4  |     12      | {-1...14}    |
+|  1  |  0  |  0  | 11  |      5      | {0}          |
+|  1  |  1  |  1  | 10  |      6      | {1, 2}       |
+|  1  |  2  |  2  |  9  |      7      | {3...6}      |
+|  1  |  3  |  3  |  8  |      8      | {7...14}     |
+|  1  |  4  |  4  |  7  |      9      | {15...22}    |
+|  1  |  5  |  5  |  6  |     10      | {31...38}    |
+|  1  |  6  |  6  |  5  |     11      | {63...78}    |
+|  1  |  7  |  7  |  4  |     12      | {127...254}  |
 
 ## Value Range Summary
 
 ### Positive Values
 
-| Type        | Min Positive          | Max Positive                |
-|-------------|-----------------------|-----------------------------|
-| takum_log8  | √e^-15 ≈ 5.53×10^-4   | √e^14.875 ≈ 1.69×10^3       |
-| takum_log16 | √e^-255 ≈ 4.20×10^-56 | √e^254.9375 ≈ 2.38×10^55    |
-| takum_log32 | √e^-255 ≈ 4.20×10^-56 | √e^254.99999... ≈ 2.38×10^55|
-| takum_log64 | √e^-255 ≈ 4.20×10^-56 | √e^254.99999... ≈ 2.38×10^55|
+| Type        | Min Positive          | Max Positive                 |
+| ----------- | --------------------- | ---------------------------- |
+| takum_log8  | √e^-15 ≈ 5.53×10^-4   | √e^14.875 ≈ 1.69×10^3        |
+| takum_log16 | √e^-255 ≈ 4.20×10^-56 | √e^254.9375 ≈ 2.38×10^55     |
+| takum_log32 | √e^-255 ≈ 4.20×10^-56 | √e^254.99999... ≈ 2.38×10^55 |
+| takum_log64 | √e^-255 ≈ 4.20×10^-56 | √e^254.99999... ≈ 2.38×10^55 |
 
 ### Dynamic Range (in decades)
 

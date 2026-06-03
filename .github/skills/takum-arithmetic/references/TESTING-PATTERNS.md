@@ -448,7 +448,7 @@ void test_double_inversion(void) {
 ### Target Coverage
 
 | Category | 8-bit | 16-bit | 32-bit | 64-bit   |
-|----------|-------|--------|--------|----------|
+| -------- | ----- | ------ | ------ | -------- |
 | Unary    | 100%  | 100%   | ~6%    | <1%      |
 | Binary   | 100%  | ~6%    | <0.01% | <0.0001% |
 | Integer  | 100%  | 100%   | ~6%    | <1%      |
@@ -456,7 +456,7 @@ void test_double_inversion(void) {
 ### Minimum Sample Recommendations
 
 | Type   | Unary Tests   | Binary Tests       |
-|--------|---------------|--------------------|
+| ------ | ------------- | ------------------ |
 | 8-bit  | 256 (full)    | 65,536 (full)      |
 | 16-bit | 65,536 (full) | 4M (sampled)       |
 | 32-bit | 4M (sampled)  | 4M (sampled pairs) |

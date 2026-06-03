@@ -577,7 +577,7 @@ takum32 takum32_from_takum64(takum64 t);
 ## Function Summary Table
 
 | Category           | Functions                                                                  | Count    |
-|--------------------|----------------------------------------------------------------------------|----------|
+| ------------------ | -------------------------------------------------------------------------- | -------- |
 | Arithmetic         | addition, subtraction, multiplication, division                            | 32       |
 | Power/Root         | power, integer_power, square_root, root                                    | 32       |
 | Exponential        | exp, exp_minus_1, 2_raised, 2_raised_minus_1, 10_raised, 10_raised_minus_1 | 48       |

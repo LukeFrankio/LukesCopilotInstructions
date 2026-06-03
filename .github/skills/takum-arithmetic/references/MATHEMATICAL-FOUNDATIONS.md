@@ -89,24 +89,24 @@ c_bias(D, R) = {
 
 Expanded lookup table:
 
-| D | R | c_bias |
-|---|---|--------|
-| 0 | 0 | -255   |
-| 0 | 1 | -127   |
-| 0 | 2 | -63    |
-| 0 | 3 | -31    |
-| 0 | 4 | -15    |
-| 0 | 5 | -7     |
-| 0 | 6 | -3     |
-| 0 | 7 | -1     |
-| 1 | 0 | 0      |
-| 1 | 1 | 1      |
-| 1 | 2 | 3      |
-| 1 | 3 | 7      |
-| 1 | 4 | 15     |
-| 1 | 5 | 31     |
-| 1 | 6 | 63     |
-| 1 | 7 | 127    |
+| D   | R   | c_bias |
+| --- | --- | ------ |
+| 0   | 0   | -255   |
+| 0   | 1   | -127   |
+| 0   | 2   | -63    |
+| 0   | 3   | -31    |
+| 0   | 4   | -15    |
+| 0   | 5   | -7     |
+| 0   | 6   | -3     |
+| 0   | 7   | -1     |
+| 1   | 0   | 0      |
+| 1   | 1   | 1      |
+| 1   | 2   | 3      |
+| 1   | 3   | 7      |
+| 1   | 4   | 15     |
+| 1   | 5   | 31     |
+| 1   | 6   | 63     |
+| 1   | 7   | 127    |
 
 ### Definition 4: NaR (Not a Real)
 
@@ -313,7 +313,7 @@ Addition and subtraction are rarely exact (require Gaussian logarithm computatio
 ### Dynamic Range Comparison
 
 | Format       | Dynamic Range (decades) |
-|--------------|-------------------------|
+| ------------ | ----------------------- |
 | IEEE float32 | ~83                     |
 | IEEE float64 | ~616                    |
 | takum16      | ~111                    |
@@ -325,7 +325,7 @@ Takum has constant dynamic range regardless of bit width.
 ### Precision Comparison at Unity
 
 | Format       | Precision at 1.0 |
-|--------------|------------------|
+| ------------ | ---------------- |
 | IEEE float32 | 24 bits          |
 | IEEE float64 | 53 bits          |
 | takum16      | 11 bits          |
@@ -334,12 +334,12 @@ Takum has constant dynamic range regardless of bit width.
 
 ### Special Value Comparison
 
-| Property            | IEEE 754      | Takum             |
-|---------------------|---------------|-------------------|
-| Zeros               | +0, -0        | Single 0          |
-| Infinities          | +∞, -∞        | None (saturates)  |
-| NaN                 | Many patterns | Single NaR        |
-| Subnormals          | Yes           | No (smooth taper) |
+| Property   | IEEE 754      | Takum             |
+| ---------- | ------------- | ----------------- |
+| Zeros      | +0, -0        | Single 0          |
+| Infinities | +∞, -∞        | None (saturates)  |
+| NaN        | Many patterns | Single NaR        |
+| Subnormals | Yes           | No (smooth taper) |
 
 ## Rounding
 
@@ -356,7 +356,7 @@ For encoding a real number r as an n-bit takum:
 ### Saturation Rules
 
 | Condition           | Result                 |
-|---------------------|------------------------|
+| ------------------- | ---------------------- |
 | Overflow to +∞      | Maximum positive takum |
 | Underflow to 0      | Minimum positive takum |
 | Invalid input (NaN) | NaR                    |

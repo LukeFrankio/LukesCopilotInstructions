@@ -32,10 +32,10 @@ Activate this skill when:
 
 ### Two Takum Variants
 
-| Variant                     | Types                 | Significand Domain | Best For                         |
-| --------------------------- | --------------------- | ------------------ | -------------------------------- |
-| **Logarithmic** (standard)  | `takum_log8/16/32/64` | Logarithmic        | Multiplication, division, powers |
-| **Linear**                  | `takum8/16/32/64`     | Linear             | Addition, subtraction            |
+| Variant                    | Types                 | Significand Domain | Best For                         |
+| -------------------------- | --------------------- | ------------------ | -------------------------------- |
+| **Logarithmic** (standard) | `takum_log8/16/32/64` | Logarithmic        | Multiplication, division, powers |
+| **Linear**                 | `takum8/16/32/64`     | Linear             | Addition, subtraction            |
 
 **Recommendation**: Use logarithmic Takums unless your workload is addition-heavy.
 
@@ -64,11 +64,11 @@ This range is **identical** for takum16, takum32, and takum64.
 
 ### Special Values
 
-| Value                | Representation                       |
-| -------------------- | ------------------------------------ |
-| **Zero**             | All bits 0: `0b00000000…`            |
-| **NaR** (Not a Real) | Sign=1, rest zeros: `0b10000000…`    |
-| **One**              | Type-specific positive encoding      |
+| Value                | Representation                    |
+| -------------------- | --------------------------------- |
+| **Zero**             | All bits 0: `0b00000000…`         |
+| **NaR** (Not a Real) | Sign=1, rest zeros: `0b10000000…` |
+| **One**              | Type-specific positive encoding   |
 
 ## Quick Reference
 
@@ -82,10 +82,10 @@ value = sign × √e^l = sign × e^(l/2)
 
 ### Characteristic Ranges
 
-| Direction | Characteristic Range   |
-| --------- | ---------------------- |
-| D = 0     | c ∈ {-255, …, -1}      |
-| D = 1     | c ∈ {0, …, 254}        |
+| Direction | Characteristic Range |
+| --------- | -------------------- |
+| D = 0     | c ∈ {-255, …, -1}    |
+| D = 1     | c ∈ {0, …, 254}      |
 
 ### Regime to Mantissa Bits (takum16 example)
 
@@ -263,14 +263,14 @@ For detailed information, see:
 
 ## Key Advantages Over IEEE 754
 
-| Property                    | IEEE 754                | Takum                    |
-| --------------------------- | ----------------------- | ------------------------ |
-| Dynamic range consistency   | Varies with precision   | **Constant** for n≥12    |
-| Multiplication closure      | ~25% exact              | **40%+ exact**           |
-| Inversion closure           | Rare                    | **100% exact** (log)     |
-| Precision guarantee         | Variable                | **n-12 bits minimum**    |
-| Zero representation         | +0 and -0               | **Single zero**          |
-| Special values              | NaN, ±Inf, subnormals   | **Only NaR**             |
+| Property                  | IEEE 754              | Takum                 |
+| ------------------------- | --------------------- | --------------------- |
+| Dynamic range consistency | Varies with precision | **Constant** for n≥12 |
+| Multiplication closure    | ~25% exact            | **40%+ exact**        |
+| Inversion closure         | Rare                  | **100% exact** (log)  |
+| Precision guarantee       | Variable              | **n-12 bits minimum** |
+| Zero representation       | +0 and -0             | **Single zero**       |
+| Special values            | NaN, ±Inf, subnormals | **Only NaR**          |
 
 ## Common Patterns
 

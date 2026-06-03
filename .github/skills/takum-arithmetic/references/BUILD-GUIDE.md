@@ -7,7 +7,7 @@ This guide covers building and using the libtakum reference implementation.
 ### Required Tools
 
 | Tool                        | Version          | Purpose                 |
-|-----------------------------|------------------|-------------------------|
+| --------------------------- | ---------------- | ----------------------- |
 | C Compiler (GCC/Clang/MSVC) | C99 support      | Compilation             |
 | Make                        | POSIX-compatible | Build orchestration     |
 | sh                          | POSIX shell      | Configure script        |
@@ -17,7 +17,7 @@ This guide covers building and using the libtakum reference implementation.
 ### Optional Tools
 
 | Tool         | Purpose                  |
-|--------------|--------------------------|
+| ------------ | ------------------------ |
 | clang-format | Code formatting          |
 | Doxygen      | Documentation generation |
 | pkg-config   | Build integration        |
@@ -167,7 +167,7 @@ gmake -j install  # Use gmake on BSD
 ## Build Targets Reference
 
 | Target           | Description                           |
-|------------------|---------------------------------------|
+| ---------------- | ------------------------------------- |
 | `all`            | Build library and man pages (default) |
 | `libtakum.a`     | Static library only                   |
 | `libtakum.so.*`  | Shared library only                   |

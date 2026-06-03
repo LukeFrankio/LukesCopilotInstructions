@@ -262,25 +262,25 @@ if (fabs(input) > MAX_REPRESENTABLE) {
 
 ### Expansion Paths (Lossless)
 
-| From        | To           | Method  |
-|-------------|--------------|---------|
-| takum_log8  | takum_log16  | `<< 8`  |
-| takum_log8  | takum_log32  | `<< 24` |
-| takum_log8  | takum_log64  | `<< 56` |
-| takum_log16 | takum_log32  | `<< 16` |
-| takum_log16 | takum_log64  | `<< 48` |
-| takum_log32 | takum_log64  | `<< 32` |
+| From        | To          | Method  |
+| ----------- | ----------- | ------- |
+| takum_log8  | takum_log16 | `<< 8`  |
+| takum_log8  | takum_log32 | `<< 24` |
+| takum_log8  | takum_log64 | `<< 56` |
+| takum_log16 | takum_log32 | `<< 16` |
+| takum_log16 | takum_log64 | `<< 48` |
+| takum_log32 | takum_log64 | `<< 32` |
 
 ### Reduction Paths (Round + Saturate)
 
-| From        | To           | Method        |
-|-------------|--------------|---------------|
-| takum_log64 | takum_log32  | Round `>> 32` |
-| takum_log64 | takum_log16  | Round `>> 48` |
-| takum_log64 | takum_log8   | Round `>> 56` |
-| takum_log32 | takum_log16  | Round `>> 16` |
-| takum_log32 | takum_log8   | Round `>> 24` |
-| takum_log16 | takum_log8   | Round `>> 8`  |
+| From        | To          | Method        |
+| ----------- | ----------- | ------------- |
+| takum_log64 | takum_log32 | Round `>> 32` |
+| takum_log64 | takum_log16 | Round `>> 48` |
+| takum_log64 | takum_log8  | Round `>> 56` |
+| takum_log32 | takum_log16 | Round `>> 16` |
+| takum_log32 | takum_log8  | Round `>> 24` |
+| takum_log16 | takum_log8  | Round `>> 8`  |
 
 ## Type Punning Patterns
 

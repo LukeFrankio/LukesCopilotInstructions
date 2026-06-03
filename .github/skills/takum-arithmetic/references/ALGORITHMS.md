@@ -580,7 +580,7 @@ ENCODE_FROM_S_AND_L(sign, l, n):
 ## Complexity Summary
 
 | Operation       | Logarithmic Takum | Linear Takum       |
-|-----------------|------------------ |--------------------|
+| --------------- | ----------------- | ------------------ |
 | Negation        | O(1)              | O(1)               |
 | Comparison      | O(1)              | O(1)               |
 | Multiplication  | O(1)              | O(decode + encode) |
