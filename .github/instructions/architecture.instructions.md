@@ -580,13 +580,13 @@ it is wrong when:
 
 8. **PostgreSQL is the durable system of record unless a narrower exception is
    explicitly declared.**
-2. **Turso is local-first and sync-explicit; it is not shadow sovereignty.**
-3. **C++ is written once for shared hot logic and compiled to native and Wasm
+9. **Turso is local-first and sync-explicit; it is not shadow sovereignty.**
+10. **C++ is written once for shared hot logic and compiled to native and Wasm
    targets when needed.**
-4. **FlatBuffers stay inside the hot path.**
-5. **Slang is the shader source of truth; WGSL is a target artifact, not the
+11. **FlatBuffers stay inside the hot path.**
+12. **Slang is the shader source of truth; WGSL is a target artifact, not the
     authoring canon.**
-6. **CMake owns native and Wasm build truth; Bun owns TS build truth.**
+13. **CMake owns native and Wasm build truth; Bun owns TS build truth.**
 
 ### What this architecture feels like in practice
 
@@ -1541,16 +1541,21 @@ choose the lightest boundary that satisfies the workload:
 - stdio or unix-domain/named-pipe style protocol when isolation is needed but
     service ceremony is not
 
-3. **Drogon internal service**
+3. **durable queue-backed worker boundary**
+
+- NATS, Redis-backed queue, or simple task queue when retries, deferred
+  execution, or fan-out matter but a full service does not yet earn itself
+
+4. **Drogon internal service**
 
 - HTTP or websocket service when independent scaling, lifecycle, or
     multi-caller integration is justified
 
-4. **Drogon public promotion**
+5. **Drogon public promotion**
 
 - only in consciously compute-first architectures
 
-the default should not skip from step 1 to step 3 without reason.
+the default should not skip from step 1 to step 4 without reason.
 
 protocol note:
 
@@ -1559,6 +1564,8 @@ protocol note:
   web-style routing, gRPC or equivalent RPC transport may be the better fit
 - if the need is isolation without full service ceremony, supervised process
   protocols (stdio or local sockets/pipes) can be enough
+- if the need is deferred execution, retries, or fan-out without a full service,
+  queue-backed worker protocols can be enough
 
 ### Drogon transport decision tree (practical)
 
@@ -1568,13 +1575,15 @@ use this quick tree before introducing or expanding a Drogon service:
    - start in-process (Bun FFI / native bridge)
 2. **need crash isolation or memory isolation but still single-caller?**
    - prefer supervised local process protocol first
-3. **need independent scaling, multi-caller consumption, or long-lived service
-   lifecycle?**
+3. **need durable async work, retries, or fan-out but still not a full service?**
+  - prefer a queue-backed worker boundary first
+4. **need independent scaling, multi-caller consumption, or long-lived service
+  lifecycle?**
    - promote to Drogon internal service
-4. **need strongly typed service contracts across many internal callers?**
+5. **need strongly typed service contracts across many internal callers?**
    - evaluate RPC transport strategy explicitly (Drogon HTTP/WebSocket vs gRPC or
      equivalent), then document the choice
-5. **need public-facing compute API identity?**
+6. **need public-facing compute API identity?**
    - only then consider public Drogon promotion with explicit contract governance
 
 ### Concrete examples
@@ -2600,6 +2609,8 @@ only add the next lane when its **reason** is stronger than its **romance**.
 
 - [ ] is there meaningful native compute or throughput value?
 - [ ] why is Bun FFI or an in-process native bridge insufficient here?
+- [ ] why is a supervised local process boundary insufficient here?
+- [ ] why is a queue-backed worker boundary insufficient here?
 - [ ] are long-running tasks a first-class concern?
 - [ ] do we need streaming or coroutine-friendly native services?
 - [ ] do we need an independent process lifecycle or scaling profile?
@@ -3202,7 +3213,7 @@ if a new piece of work arrives, use these tables before inventing a fourth owner
 | visual node editor | Elm or Solid + WebGPU | C++ core for compute | HTMX | stateful visual tool, not hypermedia |
 | simple CRUD table | HTMX | Solid only if local-only client interaction dominates | Elm | don't over-architect boring work |
 | file upload form | HTMX + Elysia HTML | Solid if UX gets highly custom | Drogon public direct | form-heavy and server-mediated by default |
-| background task launcher | HTMX or Solid | Drogon executes actual work | Elm only if the launcher itself is a workflow engine | human-readable edge over native compute |
+| background task launcher | HTMX or Solid | queue-backed worker or Drogon executes actual work | Elm only if the launcher itself is a workflow engine | human-readable edge over native compute |
 | status badge in shell | Solid | none | HTMX, Elm | this is shell ambient state |
 
 ## Service and compute placement matrix
@@ -3219,8 +3230,8 @@ if a new piece of work arrives, use these tables before inventing a fourth owner
 | simple DB-backed CRUD | Elysia + Drizzle | PostgreSQL | Drogon | don't use native compute for basic app semantics |
 | report generation with trivial SQL | Elysia + Drizzle | HTMX | Drogon | no need to promote compute too early |
 | heavy report generation | C++ core + selected boundary | Elysia shapes the output contract; Drogon if service extraction is warranted | HTMX direct to native | compute lane earns itself here |
-| long-running simulation | C++ core + selected boundary | Elysia as public coordinator; Drogon when process/service isolation matters | Elysia-only implementation | classic compute-engine job |
-| high-volume transform pipeline | C++ core + selected boundary | FlatBuffers if hot; Drogon when service lifecycle is required | Elysia monolith | compute-specific throughput concern |
+| long-running simulation | C++ core + selected boundary | Elysia as public coordinator; queue-backed worker or Drogon when process/service isolation matters | Elysia-only implementation | classic compute-engine job |
+| high-volume transform pipeline | C++ core + selected boundary | FlatBuffers if hot; queue-backed worker or Drogon when service lifecycle is required | Elysia monolith | compute-specific throughput concern |
 | import parse and normalize small payload | Elysia | C++ core if shared parsing exists | Drogon by default | keep simple work simple |
 | import parse and normalize huge binary model | C++ core + Drogon | FlatBuffers or native formats | Elysia-only path | heavy native work |
 | progress streaming | Drogon or Elysia depending owner | Solid shell renders status | HTMX polling without reason if streaming exists | use the service that owns the work |
@@ -3407,10 +3418,12 @@ do not smear them.
 ### 10. "We need live progress updates for a long-running native task."
 
 - default answer:
-  - task owner: **Drogon**
+  - task owner: **queue-backed worker or supervised process**
   - public contract owner: **Elysia** unless a compute-first architecture says
     otherwise
   - UI host: **Solid shell**
+  - **Drogon** only when independent scaling, multi-caller integration, or a
+    service lifecycle is actually earned
 
 ### 11. "We need one small fancy widget on an otherwise boring admin page."
 
@@ -4595,8 +4608,8 @@ run a heavy native task while keeping the product edge readable.
 
 - launch contract: Elysia
 - durable job metadata: PostgreSQL
-- execution: C++ core + selected boundary (Drogon when isolation/service is
-  warranted)
+- execution: C++ core + selected boundary (supervised process, queue-backed
+  worker, or Drogon when isolation/service is warranted)
 - status UI: Solid shell or HTMX route depending audience
 
 ### Lawful sequence
@@ -4604,8 +4617,10 @@ run a heavy native task while keeping the product edge readable.
 1. client starts job through Elysia
 2. Elysia validates input and policy
 3. Elysia records or coordinates job metadata in PostgreSQL
-4. Elysia hands the heavy work to Drogon
-5. Drogon runs C++ core work
+4. Elysia routes the heavy work to the lightest boundary that fits the job:
+  in-process FFI, supervised process, queue-backed worker, or Drogon when
+  service extraction is earned
+5. the chosen boundary runs C++ core work
 6. progress is exposed through stream or websocket semantics
 7. UI consumes progress through Elysia-owned product contract unless the
    architecture explicitly made Drogon public
@@ -4706,14 +4721,16 @@ into a parser.
 - file affordance and local access: Electrobun
 - import UI flow: Solid or Elm depending complexity
 - parse and normalize: C++ core
-- service wrapper if remote or long-running: Drogon
+- service wrapper if remote or long-running: supervised process,
+  queue-backed worker, or Drogon when service extraction is warranted
 - public response and persistence policy: Elysia
 
 ### Lawful sequence
 
 1. shell opens file affordance
 2. UI receives file selection and progress affordances
-3. heavy parse runs in native core or compute service
+3. heavy parse runs in native core, a supervised process, or a queue-backed
+  worker depending size and isolation needs
 4. UI previews coarse results
 5. user confirms import or publish
 6. Elysia commits product-facing state

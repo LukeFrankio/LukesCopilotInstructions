@@ -22,11 +22,23 @@ Use this skill when the task involves any of:
 
 - lane ownership disputes (Solid vs Elm vs HTMX)
 - public contract vs compute boundary decisions (Elysia vs Drogon)
-- Bun FFI vs process boundary vs Drogon service extraction
+- Bun FFI vs supervised process vs queue-backed worker vs Drogon service
+  extraction
 - Electrobun shell risk and contingency planning
 - Turso vs PostgreSQL truth partitioning
 - FlatBuffers hot-path boundary scoping
 - Slang/WGSL/WebGPU lane governance
+
+## Boundary ladder reminder
+
+When compute placement is the real question, prefer the ladder in this order:
+
+1. in-process FFI or thin host bridge
+2. supervised local process
+3. queue-backed worker for durable async work, retries, or fan-out
+4. Drogon internal service only when service semantics are genuinely earned
+
+That ladder is the core fix for the old "Drogon by default" mental model.
 
 ## Routing Table
 
